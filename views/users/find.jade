@@ -6,3 +6,15 @@
    To change this template use File | Settings | File Templates.
 
 extends ../layout
+
+block content
+    title= title
+    #container
+        h2 搜索结果
+
+        if (users != null)
+            for user in users
+                li #{user.name} #{user.email}
+                button(id="addFriend",class="formbtn") 加好友 &nbsp;&nbsp;
+                button(id="sendMessage",class="formbtn") 发私信
+                br

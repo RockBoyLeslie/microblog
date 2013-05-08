@@ -55,7 +55,7 @@ exports.login =  function(req, res) {
 };
 
 exports.find = function(req, res) {
-    var keyword = '%lichao%';
+    var keyword = '%' + req.query.keyword + '%';
     var current_user = 1;
     pool.getConnection(function(err, connection) {
         connection.query(
@@ -66,7 +66,7 @@ exports.find = function(req, res) {
                     throw err;
                 }
                 var data = {
-                    title : '搜索结果',
+                    title : '搜索好友',
                     users : rows
                 };
                 res.render('users/find', data);
