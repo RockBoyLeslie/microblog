@@ -47,7 +47,7 @@ exports.login =  function(req, res) {
                 res.render('login', {title:'登录', response_message:'邮箱或密码错误', email:email});
             } else {
                 req.session.user = rows[0];
-                res.send('登录成功');
+                res.redirect('/home');
             }
         })
     })
@@ -55,7 +55,7 @@ exports.login =  function(req, res) {
 
 exports.find = function(req, res) {
     var keyword = '%' + req.query.keyword + '%';
-    var current_user = 1;
+    var current_user = req.session.user.id;
     pool.getConnection(function(err, connection) {
         connection.query(
             'select u.*, r.type from (select id , name, email from microblog.user_accounts  where (email like ? or name like ?) and id != ?) u ' +
@@ -75,7 +75,7 @@ exports.find = function(req, res) {
     });
 };
 
-exports.logout = function(req,res){
+exports.logout = function(req, res) {
     req.session.user = null;
     res.redirect('/');
 };

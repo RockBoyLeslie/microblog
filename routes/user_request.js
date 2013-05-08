@@ -2,7 +2,7 @@ var pool = require('../db/dbconnection').pool;
 
 exports.requestFriend = function(req, res) {
     var invitee = req.body['invitee'];
-    var current_user = 1;
+    var current_user = req.session.user.id;
     pool.getConnection(function(err, connection) {
         connection.query(
             "select status from microblog.user_requests where inviter = ? and invitee = ? and type = 'friend'", [current_user, invitee],function(err, rows, fields) {

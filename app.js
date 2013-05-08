@@ -38,6 +38,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/register', routes.register);
+app.get('/home', routes.home);
 
 // user_account part
 app.post('/register', user_account.register);
