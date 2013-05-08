@@ -13,11 +13,15 @@ html
                         img(src='/images/logo.png')
                 .reglog
                     ul(class='header_r')
-                        li
-                            a(href='/login') 登录
-                        li
-                            a(href='/register') 注册
-                        li
-                            input(type="text", name="keyword", id="keyword")
-                            #search
+                        if session.user == null
+                            li
+                                a(href='/login') 登录
+                            li
+                                a(href='/register') 注册
+                        else
+                            li
+                                input(type="text", name="keyword", id="keyword")
+                                #search
+                            li
+                                a(href='/logout') 退出
         block content
