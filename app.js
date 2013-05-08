@@ -38,7 +38,7 @@ app.post('/register', user_account.register);
 app.post('/login', user_account.login);
 app.get('/find', user_account.find);
 
-// user_request part
+// user request part
 app.post('/requestFriend', user_request.requestFriend);
 
 http.createServer(app).listen(app.get('port'), function(){
