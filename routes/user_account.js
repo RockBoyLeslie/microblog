@@ -1,5 +1,4 @@
 var pool = require('../db/dbconnection').pool;
-
 exports.register = function(req, res) {
     var email = req.body['email'];
     var username = req.body['username'];
@@ -42,12 +41,13 @@ exports.login =  function(req, res) {
     var password = req.body['password'];
     var values = [email, password];
     pool.getConnection(function(err, connection){
-        connection.query('select id , name from microblog.user_accounts where email = ? and password = ?', values, function(err,rows,fields){
+        connection.query('select email, id , name from microblog.user_accounts where email = ? and password = ?', values, function(err,rows,fields){
             connection.end();
             if(!rows[0]){
                 res.render('login', {title:'登录', response_message:'邮箱或密码错误', email:email});
             } else {
-                res.send('login succeed');
+                req.session.user = rows[0];
+                res.send('登录成功');
             }
         })
     })
@@ -73,4 +73,9 @@ exports.find = function(req, res) {
             }
         )
     });
+};
+
+exports.logout = function(req,res){
+    req.session.user = null;
+    res.redirect('/');
 };
