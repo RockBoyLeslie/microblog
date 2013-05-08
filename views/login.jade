@@ -10,12 +10,14 @@ block content
     title= title
     #container
         h2 用户登录
+        if response_message != null
+            h3  #{response_message}
         form(name="form_login",action="/login",class="form_horizon",method="post")
             .formblock
                 label(class="user_label",for="email")
                     span(class="required") *
                     邮箱：
-                input(type="text",name="email",id="email")
+                input(type="text",name="email",id="email",value="#{email}")
             .formblock
                 label(class="pwd_label",for="password")
                     span(class="required") *
@@ -27,3 +29,4 @@ block content
             a(class="return",href="/register") 注册
             &nbsp;
             a(href="/forgetPsd") 忘记密码
+

@@ -10,18 +10,20 @@ block content
     title= title
     #container
         h2 用户注册
+        if response_message != null
+            h3 #{response_message}
         form(id="form_register",action="/register",class="form_horizon",method="post")
             .formblock
                 label(class="email_label",for="email")
                     span(class="required") *
                     邮箱：
-                input(type="text",name="email",id="email")
+                input(type="text",name="email",id="email", value="#{email}")
                 br
             .formblock
                 label(class="user_label",for="username")
                     span(class="required") *
                     用户名：
-                input(type="text",name="username",id="username")
+                input(type="text",name="username",id="username",value="#{username}")
                 br
             .formblock
                 label(class="pwd_label",for="password")

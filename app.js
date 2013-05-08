@@ -27,12 +27,15 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// index part
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/register', routes.register);
 
+// user part
 app.post('/register', user.register);
 app.post('/login', user.login);
+app.get('/find', user.find);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
