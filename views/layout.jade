@@ -1,0 +1,25 @@
+doctype 5
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type='text/javascript',src='/javascripts/jquery.js')
+        script(type='text/javascript',src='/javascripts/main.js')
+    body
+        block head
+            .header
+                .logo
+                    a(href='/')
+                        img(src='/images/logo.png')
+                .reglog
+                    ul(class='header_r')
+                        li
+                            a(href='/') 首页
+                        li
+                            a(href='/login') 登录
+                        li
+                            a(href='/register') 注册
+                        li
+                            input(type="text")
+                            #search
+        block content

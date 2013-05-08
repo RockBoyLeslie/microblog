@@ -1,0 +1,120 @@
+body {
+  font: 14px "微软雅黑","黑体";
+}
+body,div,ul,li,img{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    float: left;
+}
+
+li{
+    list-style: none;
+    float: left;
+}
+*:focus {outline: none;}
+a {
+  color: #2F6FAD;
+  text-decoration: none;
+}
+
+#index_l img{
+    margin: 20px 60px;
+}
+#index_r{
+    float: left;
+}
+
+#index_r h2,#container>h2{
+    margin-left: 40px;
+}
+.header{
+    height: 46px;
+    font-size: 16px;
+    background: url('/images/top_bg.png') repeat-x;
+}
+.logo{
+    float:left;
+    padding: 4px 8px;
+}
+.reglog{
+    padding: 9px;
+    float: right;
+}
+.reglog li{
+    padding:0 4px;
+    margin:0 5px;
+}
+.reglog li a{
+    color:#fff;
+    line-height: 25px;
+}
+.reglog li a:hover{
+    color:#ddd;
+}
+.reglog input{
+    height: 23px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    text-indent: 1em;
+    background: #fff url('/images/search-button.png') top right no-repeat;
+}
+.reglog input:hover{
+    background-position: bottom right;
+}
+.return{
+
+}
+.form_horizon input{
+    margin: 5px 0;
+    text-indent: 5px;
+    height: 30px;
+    width: 270px;
+    padding: 0 0 0 1px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+
+.formbtn{
+    background: #2F6FAD;
+    padding: 5px 15px;
+    color: #fff;
+    border: 1px solid #2F6FAD;
+    font: 15px '微软雅黑' ;
+    border-radius: 3px;
+    margin-left: 220px;
+}
+
+input.inputfocus{
+    border-radius: 3px;
+    box-shadow: inset 0 2px 2px rgba(0,0,0,0.075);
+    moz-transition: border linear .2s,box-shadow linear .2s;
+    -ms-transition: border linear .2s,box-shadow linear .2s;
+    -o-transition: border linear .2s,box-shadow linear .2s;
+    transition: border linear .2s,box-shadow linear .2s;
+
+}
+
+#index_l{
+    float: left;
+    width: 600px;
+
+}
+
+.form_horizon label{
+    width:97px;
+    display: block;
+    float: left;
+    text-align: right;
+    padding: 11px;
+}
+
+.required{
+    color:red;
+    padding: 0 3px;
+}
+
+.formblock{
+    height: 45px;
+}

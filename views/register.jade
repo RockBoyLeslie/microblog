@@ -1,0 +1,40 @@
+//
+   Created with JetBrains WebStorm.
+   User: Sophia
+   Date: 13-5-6
+   Time: 下午11:21
+   To change this template use File | Settings | File Templates.
+
+extends layout
+block content
+    title= title
+    #container
+        h2 用户注册
+        form(id="form_register",action="/register",class="form_horizon",method="post")
+            .formblock
+                label(class="email_label",for="email")
+                    span(class="required") *
+                    邮箱：
+                input(type="text",name="email",id="email")
+                br
+            .formblock
+                label(class="user_label",for="username")
+                    span(class="required") *
+                    用户名：
+                input(type="text",name="username",id="username")
+                br
+            .formblock
+                label(class="pwd_label",for="password")
+                    span(class="required") *
+                    输入密码：
+                input(type="password",name="password",id="password")
+                br
+            .formblock
+                label(class="pwdre_label",for="passwordRe")
+                    span(class="required") *
+                    确认密码：
+                input(type="password",name="passwordRe",id="passwordRe")
+                br
+            button(id="regbtn",class="formbtn") 注册
+            &nbsp;&nbsp;&nbsp;
+            a(href="/login") 返回登录
