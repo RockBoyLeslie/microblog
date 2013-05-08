@@ -13,8 +13,10 @@ block content
         h2 搜索结果
 
         if (users != null)
-            for user in users
-                li #{user.name} #{user.email}
-                button(id="addFriend",class="formbtn") 加好友 &nbsp;&nbsp;
-                button(id="sendMessage",class="formbtn") 发私信
+            for user,index in users
+                li #{index + 1}. #{user.name} #{user.email}
+                if (user.type == 'friend')
+                    button(id="sendMessage", name="sendMessage",for="#{user.id}", class="formbtn") 发私信
+                else
+                    button(id="sendMessage", name="requestFriend", for="#{user.id}", class="formbtn") 加好友
                 br

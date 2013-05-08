@@ -5,7 +5,8 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
+  , user_account = require('./routes/user_account')
+  , user_request = require('./routes/user_request')
   , http = require('http')
   , path = require('path');
 
@@ -32,10 +33,13 @@ app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/register', routes.register);
 
-// user part
-app.post('/register', user.register);
-app.post('/login', user.login);
-app.get('/find', user.find);
+// user_account part
+app.post('/register', user_account.register);
+app.post('/login', user_account.login);
+app.get('/find', user_account.find);
+
+// user_request part
+app.post('/requestFriend', user_request.requestFriend);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

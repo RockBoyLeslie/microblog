@@ -20,7 +20,6 @@ exports.register = function(req, res) {
                 throw err;
             }
             if(rows[0]){
-
                 data.response_message = '邮箱已经存在',
                 res.render('register',data);
             }
@@ -59,14 +58,15 @@ exports.find = function(req, res) {
     var current_user = 1;
     pool.getConnection(function(err, connection) {
         connection.query(
-            'select id , name, email from microblog.user_accounts where (email like ? or name like ?) and id != ?',
-            [keyword, keyword, current_user],
+            'select u.*, r.type from (select id , name, email from microblog.user_accounts  where (email like ? or name like ?) and id != ?) u ' +
+                'left join (select friend_id, type from microblog.user_relationships where user_id = ?) r on u.id = r.friend_id;',
+            [keyword, keyword, current_user, current_user],
             function(err, rows, fields) {
                 if (err) {
                     throw err;
                 }
                 var data = {
-                    title : '搜索好友',
+                    title : '搜索结果',
                     users : rows
                 };
                 res.render('users/find', data);

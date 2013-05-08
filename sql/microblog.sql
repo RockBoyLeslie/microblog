@@ -123,7 +123,7 @@ CREATE TABLE `user_accounts` (
   `created_at` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `user_accounts` (
 
 LOCK TABLES `user_accounts` WRITE;
 /*!40000 ALTER TABLE `user_accounts` DISABLE KEYS */;
-INSERT INTO `user_accounts` VALUES (1,'leslie.li@live.com','leslie','leslie',0,0,0,'2013-05-07 03:41:11'),(2,'lichao8858749@hotmail.com','12','12',0,0,0,'2013-05-07 13:33:28');
+INSERT INTO `user_accounts` VALUES (1,'leslie.li@live.com','leslie','leslie',0,0,0,'2013-05-07 03:41:11'),(2,'lichao8858749@hotmail.com','12','12',0,0,0,'2013-05-07 13:33:28'),(3,'12','123','1222',0,0,0,'2013-05-07 14:25:57'),(4,'uniteweb@163.com','123','12',0,0,0,'2013-05-08 06:03:40');
 /*!40000 ALTER TABLE `user_accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,12 +145,12 @@ DROP TABLE IF EXISTS `user_relationships`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_relationships` (
   `id` int(11) NOT NULL auto_increment,
-  `inviter` int(11) NOT NULL,
-  `invitee` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `friend_id` int(11) NOT NULL,
   `type` varchar(15) NOT NULL default 'friend',
-  `status` varchar(10) NOT NULL default 'pending',
   `created_at` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`friend_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -162,6 +162,33 @@ LOCK TABLES `user_relationships` WRITE;
 /*!40000 ALTER TABLE `user_relationships` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user_requests`
+--
+
+DROP TABLE IF EXISTS `user_requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_requests` (
+  `id` int(11) NOT NULL auto_increment,
+  `inviter` int(11) NOT NULL,
+  `invitee` int(11) NOT NULL,
+  `type` varchar(15) NOT NULL default 'friend',
+  `status` varchar(10) NOT NULL default 'pending',
+  `created_at` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_requests`
+--
+
+LOCK TABLES `user_requests` WRITE;
+/*!40000 ALTER TABLE `user_requests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_requests` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -172,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-07 22:24:24
+-- Dump completed on 2013-05-08 17:11:08
