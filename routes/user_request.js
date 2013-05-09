@@ -37,10 +37,9 @@ exports.requestFriend = function(req, res) {
     });
 };
 
-// query the friend requests and notifications for current user
+// query the friend request number and notification number for current user
 exports.notification = function(req, res) {
     var current_user = req.session.user.id;
-
     pool.getConnection(function(err, connection){
         try {
             // fetch friend requests
@@ -64,6 +63,33 @@ exports.notification = function(req, res) {
             );
         } catch (err) {
             console.log(err);
+            res.send(err);
+        } finally {
+            connection.end();
+        }
+    });
+}
+
+// fetch friend requests for current user
+exports.fetchRequests = function(req, res) {
+    var current_user = req.session.user.id;
+    pool.getConnection(function(err, connection){
+        try{
+            connection.query(
+                "select r.id, u.name, u.email from microblog.user_requests r, microblog.user_accounts u where r.invitee = ? and type = 'friend' and status = 'pending' and r.inviter = u.id",
+                [current_user],
+                function(err, rows, fields) {
+                    if (err) {
+                        throw err;
+                    }
+                    var data = {
+                        response_code : '0',
+                        requests : rows
+                    }
+                    res.json(data);
+                }
+            );
+        } catch (err) {
             res.send(err);
         } finally {
             connection.end();

@@ -62,6 +62,7 @@ app.get('/find', user_account.find);
 
 // user request part
 app.post('/requestFriend', user_request.requestFriend);
+app.get('/fetchRequests', user_request.fetchRequests);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
