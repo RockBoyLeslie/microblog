@@ -30,6 +30,7 @@ CREATE TABLE `comments` (
   `status` varchar(11) NOT NULL default 'approved',
   `agent` varchar(10) NOT NULL default 'website',
   `created_at` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  `is_read` varchar(1) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

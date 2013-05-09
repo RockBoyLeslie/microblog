@@ -1,11 +1,7 @@
 /*
  * GET home page.
  */
-/*var flash = require('connect-flash');
 
-app.configure(function(){
-    app.use(flash());
-});*/
 exports.index = function(req, res){
     if(req.session.user){
         //已登录状态

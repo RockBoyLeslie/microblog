@@ -50,6 +50,7 @@ app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/register', routes.register);
 app.get('/home', routes.home);
+app.get('/notification', user_request.notification);
 
 
 // user_account part

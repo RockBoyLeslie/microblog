@@ -5,6 +5,8 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(type='text/javascript',src='/javascripts/jquery.js')
         script(type='text/javascript',src='/javascripts/main.js')
+        if session.user != null
+            script(type='text/javascript',src='/javascripts/notification.js')
     body
         block head
             .header

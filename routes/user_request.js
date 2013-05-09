@@ -1,5 +1,6 @@
 var pool = require('../db/dbconnection').pool;
 
+// send friend request
 exports.requestFriend = function(req, res) {
     var invitee = req.body['invitee'];
     var current_user = req.session.user.id;
@@ -35,3 +36,26 @@ exports.requestFriend = function(req, res) {
         }
     });
 };
+
+// query the friend requests and notifications for current user
+exports.notification = function(req, res) {
+    var current_user = req.session.user.id;
+
+    pool.getConnection(function(err, connection){
+        var data = {response_code : '0'};
+        try {
+            // fetch friend requests
+            connection.query("select count(1) as friend_requests from microblog.user_requests where invitee = ? and type = 'friend' and status = 'pending'", [current_user], function(err, rows, fields){
+                if (err) {
+                    throw err;
+                }
+                data.friend_requests = rows[0].friend_requests;
+            });
+            res.json(data);
+        } catch (err) {
+            res.send(err);
+        } finally {
+            connection.end();
+        }
+    });
+}
