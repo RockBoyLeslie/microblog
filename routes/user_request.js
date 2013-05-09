@@ -87,6 +87,7 @@ exports.fetchRequests = function(req, res) {
                         requests : rows
                     }
                     res.json(data);
+                    console.log(data);
                 }
             );
         } catch (err) {

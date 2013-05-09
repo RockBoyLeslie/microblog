@@ -10,9 +10,9 @@ $(function(){
         'onblur':"this.className="+"'inputblur'",
         'onfocus':"this.className="+"'inputfocus'"
     });
-/*    $('#msg').hover(function(){
-       $('#msg_list').toggleClass("hide");
-    });*/
+    $('#user').hover(function(){
+       $('#msg_line').toggleClass("hide");
+    });
 
     //登录验证
     $('#loginbtn').click(function(){

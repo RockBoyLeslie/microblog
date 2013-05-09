@@ -10,27 +10,38 @@ html
     body
         block head
             .header
-                .logo
-                    a(href='/')
-                        img(src='/images/logo.png')
-                .reglog
-                    ul(class='header_r')
-                        if session.user == null
-                            li
-                                a(href='/login') 登录
-                            li
-                                a(href='/register') 注册
-                        else
-                            form(action="/find")
-                                li(id="msg") &nbsp;
-                                dt(id="msg_list",class="hide")
-                                    dl
-                                    dl
-                                li(id="user") &nbsp;
-                                li(id="logout") &nbsp;
+                .header_in
+                    .logo
+                        a(href='/')
+                            img(src='/images/logo.png')
+                    .reglog
+                        ul(class='header_r')
+                            if session.user == null
                                 li
-                                    input(type="text", name="keyword", id="keyword")
-                                    button(id="search")
+                                    a(href='/login') 登录
                                 li
-                                    a(href='/logout') 退出
+                                    a(href='/register') 注册
+                            else
+                                form(action="/find")
+                                    li
+                                        input(type="text", name="keyword", id="keyword")
+                                        button(id="search")
+                                    a(href="#")
+                                        li(id="user") &nbsp;
+                                        li(class="bubble")
+                                    a(href="#")
+                                        li(id="msg") &nbsp;
+                                        li(class="bubble")
+                                        li(id="msg_line",class="hide")
+                                            dt(id="msg_list")
+                                                dl
+                                                    span xxx请求加您好友
+                                                    button(id="accept_friends",class="formbtn_l") 同意
+                                                    button(id="reject_friends",class="formbtn_l") 拒绝
+                                                dl xxx请求加您好友
+                                    a(href="#")
+                                        li(id="set") &nbsp;
+                                    a(href="/logout")
+                                        li(id="logout") &nbsp;
+
         block content
