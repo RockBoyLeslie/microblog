@@ -36,6 +36,9 @@ a {
     display: block;
     float: left;
 }
+.header_r div{
+    float: left;
+}
 .header{
     height: 48px;
     font-size: 16px;
@@ -59,11 +62,12 @@ a {
     margin:0 5px;
 }
 .reglog li a{
-    color:#fff;
-    line-height: 25px;
+    color:#3498d8;
+    line-height: 27px;
+    font-weight: bold;
 }
 .reglog li a:hover{
-    color:#ddd;
+    text-decoration: underline;
 }
 .reglog input{
     height: 23px;
@@ -108,10 +112,11 @@ a {
     margin-left: 220px;
 }
 .formbtn_l{
-    background: #2F6FAD;
-    padding: 3px 8px;
+    background: #e67e22;
+    padding: 2px 6px;
     font: 13px '微软雅黑' ;
     margin-left: 6px;
+    border: 1px solid #e67e22;
 }
 
 input.inputfocus{
@@ -189,7 +194,7 @@ li.bubble {
     display: none;
 }
 
-#msg_list{
+#msg_line dt{
 
     font-size: 14px;
     border: 3px solid #2F6FAD;
@@ -199,13 +204,13 @@ li.bubble {
 
 }
 
-#msg_list dl{
+#msg_line dt dl{
    padding:4px;
 }
 
 #msg_line{
     position: absolute;
-    margin-left: -50px;
+    margin-left: -3px;
     margin-top: 46px;
     background: url(/images/buttons.png) 10px -40px;
     padding-top: 8px;

@@ -68,7 +68,7 @@ exports.notification = function(req, res) {
             connection.end();
         }
     });
-}
+};
 
 // fetch friend requests for current user
 exports.fetchRequests = function(req, res) {
@@ -85,9 +85,9 @@ exports.fetchRequests = function(req, res) {
                     var data = {
                         response_code : '0',
                         requests : rows
-                    }
+                    };
+                    res.render('/home', {title:'个人主页', requests:data.requests});
                     res.json(data);
-                    console.log(data);
                 }
             );
         } catch (err) {
@@ -96,7 +96,7 @@ exports.fetchRequests = function(req, res) {
             connection.end();
         }
     });
-}
+};
 
 // reject friend request for current_user
 exports.reject = function(req, res) {
@@ -117,7 +117,7 @@ exports.reject = function(req, res) {
             connection.end();
         }
     });
-}
+};
 
 // accept friend request for current user
 exports.accept = function(req, res) {
@@ -153,4 +153,4 @@ exports.accept = function(req, res) {
             connection.end();
         }
     });
-}
+};

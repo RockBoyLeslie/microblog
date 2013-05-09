@@ -12,21 +12,21 @@ block content
         h2 用户登录
         if response_message != null
             h3  #{response_message}
-        form(name="form_login",action="/login",class="form_horizon",method="post")
+        form.form_horizon(name="form_login",action="/login",method="post")
             .formblock
                 label(class="user_label",for="email")
-                    span(class="required") *
+                    span.required *
                     邮箱：
-                input(type="text",name="email",id="email",value="#{email}")
+                input#email(type="text",name="email",value="#{email}")
             .formblock
                 label(class="pwd_label",for="password")
-                    span(class="required") *
+                    span.required *
                     输入密码：
                 input(type="password",name="password",id="password")
                 br
-            button(id="loginbtn",class="formbtn") 登录
+            button#loginbtn.formbtn 登录
             &nbsp;
-            a(class="return",href="/register") 注册
+            a.return(href="/register") 注册
             &nbsp;
             a(href="/forgetPsd") 忘记密码
 

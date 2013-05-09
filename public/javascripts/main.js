@@ -10,9 +10,28 @@ $(function(){
         'onblur':"this.className="+"'inputblur'",
         'onfocus':"this.className="+"'inputfocus'"
     });
-    $('#user').hover(function(){
-       $('#msg_line').toggleClass("hide");
+    $('#msg_hover').hover(function(){
+       $.ajax({
+           url: '/fetchRequests',
+           type: 'get',
+           dataType: 'json',
+           success: function(data) {
+               if (data.response_code == 0) {
+                   /*for(var i= 0,req_length=data.requests.length;i<req_length;i++){
+                       var inviterItem = data.requests[i].name
+                   }*/
+                   window.inviterItems = data.requests;
+               }
+           }
+       });
+       $('#msg_line').removeClass("hide");
+    },function(){
+       $("#msg_line").hover(function(){
+       },function(){
+           $('#msg_line').addClass("hide");
+       });
     });
+
 
     //登录验证
     $('#loginbtn').click(function(){

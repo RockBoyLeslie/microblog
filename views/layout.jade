@@ -26,19 +26,31 @@ html
                                     li
                                         input(type="text", name="keyword", id="keyword")
                                         button(id="search")
-                                    a(href="#")
+                                    ul(id="user_hover",href="#")
                                         li(id="user") &nbsp;
                                         li(class="bubble")
-                                    a(href="#")
-                                        li(id="msg") &nbsp;
-                                        li(class="bubble")
-                                        li(id="msg_line",class="hide")
-                                            dt(id="msg_list")
+                                        li(id="user_line",class="hide")
+                                            dt
                                                 dl
-                                                    span xxx请求加您好友
+                                                    span
+                                                        a(href="#") xxx
+                                                        &nbsp;请求加您好友
                                                     button(id="accept_friends",class="formbtn_l") 同意
                                                     button(id="reject_friends",class="formbtn_l") 拒绝
                                                 dl xxx请求加您好友
+                                    ul(id="msg_hover")
+                                        li(id="msg") &nbsp;
+                                        li(class="bubble")
+                                        li(id="msg_line",class="hide")
+                                            dt
+                                                if(requests!=null)
+                                                    for name in requests
+                                                        dl
+                                                            span
+                                                                a(href="#") #{name}
+                                                                &nbsp;请求加您好友
+                                                            button(id="accept_friends",class="formbtn_l") 同意
+                                                            button(id="reject_friends",class="formbtn_l") 拒绝
                                     a(href="#")
                                         li(id="set") &nbsp;
                                     a(href="/logout")
