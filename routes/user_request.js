@@ -42,17 +42,28 @@ exports.notification = function(req, res) {
     var current_user = req.session.user.id;
 
     pool.getConnection(function(err, connection){
-        var data = {response_code : '0'};
         try {
             // fetch friend requests
-            connection.query("select count(1) as friend_requests from microblog.user_requests where invitee = ? and type = 'friend' and status = 'pending'", [current_user], function(err, rows, fields){
-                if (err) {
-                    throw err;
+            connection.query(
+                "select a.friend_requests, b.friend_comments, c.friend_messages from (select count(1) as friend_requests from microblog.user_requests where invitee = ? and type = 'friend' and status = 'pending') a" +
+                " inner join (select count(1) as friend_comments from microblog.comments where message_user_id = ? and is_read = '0' and status = 'approved') b" +
+                " inner join (select count(1) as friend_messages from microblog.private_messages where to_user = ? and is_read = '0' and status in ('0','1')) c",
+                [current_user, current_user, current_user],
+                function(err, rows, fields){
+                    if (err) {
+                        throw err;
+                    }
+                    var data = {
+                        response_code : '0',
+                        friend_requests : rows[0].friend_requests,
+                        friend_comments : rows[0].friend_comments,
+                        friend_messages : rows[0].friend_messages
+                    };
+                    res.json(data);
                 }
-                data.friend_requests = rows[0].friend_requests;
-            });
-            res.json(data);
+            );
         } catch (err) {
+            console.log(err);
             res.send(err);
         } finally {
             connection.end();
