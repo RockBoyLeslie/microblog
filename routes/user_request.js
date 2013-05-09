@@ -86,7 +86,6 @@ exports.fetchRequests = function(req, res) {
                         response_code : '0',
                         requests : rows
                     };
-                    res.render('/home', {title:'个人主页', requests:data.requests});
                     res.json(data);
                 }
             );
