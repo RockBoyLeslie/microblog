@@ -29,6 +29,9 @@ a {
 #index_r h2,#container>h2{
     margin-left: 40px;
 }
+.header_r li input{
+    float: left;
+}
 .header{
     height: 46px;
     font-size: 16px;
@@ -62,6 +65,16 @@ a {
 }
 .reglog input:hover{
     background-position: bottom right;
+}
+#search{
+    cursor: pointer;
+    width: 36px;
+    height: 29px;
+    position: absolute;
+    margin-left: -38px;
+    margin-top: -1px;
+    background: transparent;
+    border: 0;
 }
 .return{
 
@@ -117,4 +130,23 @@ input.inputfocus{
 
 .formblock{
     height: 45px;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+#msg{
+    background: url('/images/message.png') no-repeat;
+    padding:3px 12px;
+}
+
+
+#user{
+    background: url('/images/user.png') no-repeat;
+    padding:3px 12px;
 }

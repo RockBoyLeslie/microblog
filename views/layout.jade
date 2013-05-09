@@ -19,9 +19,16 @@ html
                             li
                                 a(href='/register') 注册
                         else
-                            li
-                                input(type="text", name="keyword", id="keyword")
-                                #search
-                            li
-                                a(href='/logout') 退出
+                            form(action="/find")
+                                li(id="msg") &nbsp;
+                                dt(id="msg_list",class="hide")
+                                    dl
+                                    dl
+                                li(id="user") &nbsp;
+                                li(id="logout") &nbsp;
+                                li
+                                    input(type="text", name="keyword", id="keyword")
+                                    button(id="search")
+                                li
+                                    a(href='/logout') 退出
         block content
