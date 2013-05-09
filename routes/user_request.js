@@ -136,7 +136,7 @@ exports.accept = function(req, res) {
                     if (rows[0]) {
                         res.json({response_code : '0', response_message : '你俩已经是好友了'});
                     } else {
-                        connection.query("insert into user_relationships(user_id, friend_id) values (?,?),(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
+                        connection.query("insert into user_relationships(user_id, friend_id) values (?,?),hge(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
                             if (err) {
                                 throw err;
                             }

@@ -194,7 +194,7 @@ li.bubble {
     display: none;
 }
 
-#msg_line dt{
+#msg_line dt,#user_line dt{
 
     font-size: 14px;
     border: 3px solid #2F6FAD;
@@ -204,11 +204,11 @@ li.bubble {
 
 }
 
-#msg_line dt dl{
+#msg_line dt dl,#user_line dt dl{
    padding:4px;
 }
 
-#msg_line{
+#msg_line,#user_line{
     position: absolute;
     margin-left: -3px;
     margin-top: 46px;

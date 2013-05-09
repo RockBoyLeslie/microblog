@@ -18,8 +18,8 @@ $(function(){
              success: function(data) {
                  if (data.response_code == 0) {
                      if(data.friend_requests>0){
-                        if(data.friend_requests>9) $("#user+.bubble").css('padding-left','5px');
-                        $('#user+.bubble').css('display','block').html(data.friend_requests);
+                         if(data.friend_requests>9) $("#user+.bubble").css('padding-left','5px');
+                            $('#user+.bubble').css('display','block').html(data.friend_requests);
                      }
                      if(data.friend_comments+data.friend_messages>0){
                          $('#msg+.bubble').css('display','block').html(data.friend_comments+data.friend_messages);

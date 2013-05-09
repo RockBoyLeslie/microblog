@@ -10,7 +10,7 @@ $(function(){
         'onblur':"this.className="+"'inputblur'",
         'onfocus':"this.className="+"'inputfocus'"
     });
-    $('#msg_hover').hover(function(){
+    $('#user_hover').hover(function(){
        $.ajax({
            url: '/fetchRequests',
            type: 'get',
@@ -19,17 +19,40 @@ $(function(){
                if (data.response_code == 0) {
                    for(var i= 0,req_length=data.requests.length;i<req_length;i++){
                        var inviterItem = data.requests[i].name
+                       var pendingMsg = '<dl><span><a href="#">' + inviterItem +
+                       '</a>&nbsp;请求加您好友</span>' +
+                       '<button id="accept_friends" class="formbtn_l">同意</button>' +
+                       '<button id="reject_friends" class="formbtn_l">拒绝</button></dl>';
+                       $("#user_line dt").append(pendingMsg);
                    }
-                   window.inviterItems = data.requests;
                }
            }
        });
-       $('#msg_line').removeClass("hide");
+       $('#user_line').removeClass("hide");
     },function(){
-       $("#msg_line").hover(function(){
+       $("#user_line").hover(function(){
        },function(){
-           $('#msg_line').addClass("hide");
+           $('#user_line').addClass("hide");
        });
+    });
+
+    $('#msg_hover').hover(function(){
+        $.ajax({
+            url: '',
+            type: 'get',
+            dataType: 'json',
+            success: function(data) {
+                if (data.response_code == 0) {
+
+                }
+            }
+        });
+        $('#msg_line').removeClass("hide");
+    },function(){
+        $("#msg_line").hover(function(){
+        },function(){
+            $('#msg_line').addClass("hide");
+        });
     });
 
 
