@@ -17,9 +17,9 @@ $(function(){
            dataType: 'json',
            success: function(data) {
                if (data.response_code == 0) {
-                   /*for(var i= 0,req_length=data.requests.length;i<req_length;i++){
+                   for(var i= 0,req_length=data.requests.length;i<req_length;i++){
                        var inviterItem = data.requests[i].name
-                   }*/
+                   }
                    window.inviterItems = data.requests;
                }
            }

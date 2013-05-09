@@ -43,14 +43,12 @@ html
                                         li(class="bubble")
                                         li(id="msg_line",class="hide")
                                             dt
-                                                if(requests!=null)
-                                                    for name in requests
-                                                        dl
-                                                            span
-                                                                a(href="#") #{name}
-                                                                &nbsp;请求加您好友
-                                                            button(id="accept_friends",class="formbtn_l") 同意
-                                                            button(id="reject_friends",class="formbtn_l") 拒绝
+                                                dl
+                                                    span
+                                                        a(href="#") #{name}
+                                                        &nbsp;请求加您好友
+                                                    button(id="accept_friends",class="formbtn_l") 同意
+                                                    button(id="reject_friends",class="formbtn_l") 拒绝
                                     a(href="#")
                                         li(id="set") &nbsp;
                                     a(href="/logout")
