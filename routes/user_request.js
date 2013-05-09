@@ -76,7 +76,7 @@ exports.fetchRequests = function(req, res) {
     pool.getConnection(function(err, connection){
         try{
             connection.query(
-                "select r.id, u.name, u.email from microblog.user_requests r, microblog.user_accounts u where r.invitee = ? and type = 'friend' and status = 'pending' and r.inviter = u.id",
+                "select r.id as request_id, u.id as inviter,u.name, u.email from microblog.user_requests r, microblog.user_accounts u where r.invitee = ? and type = 'friend' and status = 'pending' and r.inviter = u.id",
                 [current_user],
                 function(err, rows, fields) {
                     if (err) {
@@ -91,6 +91,63 @@ exports.fetchRequests = function(req, res) {
             );
         } catch (err) {
             res.send(err);
+        } finally {
+            connection.end();
+        }
+    });
+}
+
+// reject friend request for current_user
+exports.reject = function(req, res) {
+    var request_id = req.query.request_id;
+    var inviter = req.query.inviter;
+    var invitee = req.session.user.id;
+    pool.getConnection(function(err, connection){
+        try {
+            connection.query("update user_requests set status = 'rejected' where id = ? and inviter = ? and invitee = ? and status = 'pending'", [request_id, inviter, invitee], function(err, rows){
+                if (err) {
+                    throw err;
+                }
+                res.json({response_code : '0'});
+            });
+        } catch(err) {
+            res.json({response_code : '-1', response_message : err});
+        } finally {
+            connection.end();
+        }
+    });
+}
+
+// accept friend request for current user
+exports.accept = function(req, res) {
+    var request_id = req.query.request_id;
+    var inviter = req.query.inviter;
+    var invitee = req.session.user.id;
+    pool.getConnection(function(err, connection){
+        try {
+            connection.query("update user_requests set status = 'approved' where id = ? and inviter = ? and invitee = ? and status = 'pending'", [request_id, inviter, invitee], function(err, rows){
+                if (err) {
+                    throw err;
+                }
+                connection.query("select 1 from user_relationships where (user_id = ? and friend_id = ?) or (user_id = ? or friend_id = ?)", [inviter, invitee, invitee, inviter], function(err, rows, fields){
+                    if (err) {
+                        throw err;
+                    }
+                    if (rows[0]) {
+                        res.json({response_code : '0', response_message : '你俩已经是好友了'});
+                    } else {
+                        connection.query("insert into user_relationships(user_id, friend_id) values (?,?),(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
+                            if (err) {
+                                throw err;
+                            }
+                            res.json({response_code : '0', response_message : '好友添加成功'});
+                        });
+                    }
+                });
+            });
+        } catch(err) {
+            connection.back();
+            res.json({response_code : '-1', response_message : err});
         } finally {
             connection.end();
         }
