@@ -24,6 +24,12 @@ $(function(){
             }
         });
     });
+
+    //跳转到发送私信
+    $("button[name='sendMessage']").click(function(){
+        var to_user = $(this).attr("for");
+        window.location.href = "/sendMessage?to_user=" + to_user;
+    });
 });
 
 

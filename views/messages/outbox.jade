@@ -1,0 +1,20 @@
+//
+   Created with JetBrains WebStorm.
+   User: Sophia
+   Date: 13-5-6
+   Time: 下午10:29
+   To change this template use File | Settings | File Templates.
+
+extends ../layout
+block content
+    #container
+        h2  发信箱  &nbsp;&nbsp;
+        if (messages != null)
+            for message,index in messages
+                li #{index + 1}.
+                a(href="/showMessage?id=#{message.id}") #{message.title}
+                &nbsp;&nbsp;to &nbsp;&nbsp;
+                a(href="#") #{message.name}
+                br
+
+

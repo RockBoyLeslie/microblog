@@ -7,7 +7,7 @@ exports.fetchFriends = function(req, res) {
         try{
             connection.query(
                 "select r.friend_id, u.name, u.email from microblog.user_relationships r,microblog.user_accounts u" +
-                " where r.user_id = ? and r.type = 'friend' and u.id = r.friend_id",
+                " where r.user_id = ? and r.type = 'friend' and u.id = r.friend_id order by u.name",
                 [current_user],
                 function(err, rows, fields) {
                     if (err) {
