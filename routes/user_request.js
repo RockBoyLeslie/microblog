@@ -15,9 +15,11 @@ exports.requestFriend = function(req, res) {
                         var user_request =  rows[0];
                         if (user_request.status == 'approved') {
                             res.json({response_code : '0', response_message : '你俩已经是好友了'});
+                            return;
                         }
                         if (user_request.status == 'pending') {
                             res.json({response_code : '0', response_message : '好友请求发送成功'});
+                            return;
                         }
                     }
 
@@ -109,6 +111,7 @@ exports.reject = function(req, res) {
                     throw err;
                 }
                 res.json({response_code : '0'});
+                return;
             });
         } catch(err) {
             res.json({response_code : '-1', response_message : err});
@@ -135,12 +138,14 @@ exports.accept = function(req, res) {
                     }
                     if (rows[0]) {
                         res.json({response_code : '0', response_message : '你俩已经是好友了'});
+                        return;
                     } else {
                         connection.query("insert into user_relationships(user_id, friend_id) values (?,?),hge(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
                             if (err) {
                                 throw err;
                             }
                             res.json({response_code : '0', response_message : '好友添加成功'});
+                            return;
                         });
                     }
                 });
