@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user_account = require('./routes/user_account')
   , user_request = require('./routes/user_request')
+  ,user_relationship = require('./routes/user_relationship')
   , http = require('http')
   , path = require('path')
   , cookieStore = require('connect/lib/middleware/session/memory')
@@ -65,6 +66,9 @@ app.post('/requestFriend', user_request.requestFriend);
 app.get('/fetchRequests', user_request.fetchRequests);
 app.get('/reject', user_request.reject);
 app.get('/accept', user_request.accept);
+
+// user relationship part
+app.get('/friends', user_relationship.fetchFriends);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

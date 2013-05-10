@@ -1,0 +1,18 @@
+//
+   Created with JetBrains WebStorm.
+   User: Sophia
+   Date: 5/8/13
+   Time: 2:15 PM
+   To change this template use File | Settings | File Templates.
+
+extends ../layout
+
+block content
+    title= title
+    #container
+        h2 我的好友
+        if (friends != null)
+            for friend,index in friends
+                li #{index + 1}. #{friend.name} #{friend.email}
+                button(id="sendMessage", name="sendMessage",for="#{friend.friend_id}", class="formbtn") 发送私信
+                button(id="deleteFriend", name="deleteFriend", for="#{friend.friend_id}", class="formbtn") 删除好友

@@ -15,7 +15,7 @@ block content
             for user,index in users
                 li #{index + 1}. #{user.name} #{user.email}
                 if (user.type == 'friend')
-                    button(id="sendMessage", name="sendMessage",for="#{user.id}", class="formbtn") 发私信
+                    button(id="sendMessage", name="sendMessage",for="#{user.id}", class="formbtn") 发送私信
                 else
-                    button(id="sendMessage", name="requestFriend", for="#{user.id}", class="formbtn") 加好友
+                    button(id="sendMessage", name="requestFriend", for="#{user.id}", class="formbtn") 加为好友
                 br
