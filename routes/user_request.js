@@ -101,8 +101,8 @@ exports.fetchRequests = function(req, res) {
 
 // reject friend request for current_user
 exports.reject = function(req, res) {
-    var request_id = req.body['request_id'];
-    var inviter = req.body['inviter'];
+    var request_id = req.query.request_id;
+    var inviter = req.query.inviter;
     var invitee = req.session.user.id;
     pool.getConnection(function(err, connection){
         try {
@@ -110,7 +110,7 @@ exports.reject = function(req, res) {
                 if (err) {
                     throw err;
                 }
-                res.json({response_code : '0'});
+                res.json({response_code : '0', response_message : '拒绝好友成功'});
                 return;
             });
         } catch(err) {
@@ -132,7 +132,7 @@ exports.accept = function(req, res) {
                 if (err) {
                     throw err;
                 }
-                connection.query("select 1 from microblog.user_relationships where (user_id = ? and friend_id = ?) or (user_id = ? or friend_id = ?)", [inviter, invitee, invitee, inviter], function(err, rows, fields){
+                connection.query("select 1 from microblog.user_relationships where (user_id = ? and friend_id = ?) or (user_id = ? and friend_id = ?)", [inviter, invitee, invitee, inviter], function(err, rows, fields){
                     if (err) {
                         throw err;
                     }
@@ -140,7 +140,7 @@ exports.accept = function(req, res) {
                         res.json({response_code : '0', response_message : '你俩已经是好友了'});
                         return;
                     } else {
-                        connection.query("insert into microblog.user_relationships(user_id, friend_id) values (?,?),hge(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
+                        connection.query("insert into microblog.user_relationships(user_id, friend_id) values (?,?),(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
                             if (err) {
                                 throw err;
                             }

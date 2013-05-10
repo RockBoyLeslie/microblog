@@ -21,10 +21,12 @@ $(function(){
                         if(i<5){
                             var inviterItem = data.requests[i].name
                             var pendingMsg = '<dl><span><a href="#">' + inviterItem +
-                                '</a>&nbsp;请求加您好友</span><button id="accept_friends" for="' +
+                                '</a>&nbsp;请求加您好友</span><button id="accept_friends" name="accept_friends" for="' +
                                 data.requests[i].request_id +':'+ data.requests[i].inviter +
                                 '" class="formbtn_l">同意</button>' +
-                                '<button id="reject_friends" class="formbtn_l">拒绝</button></dl>';
+                                '<button id="reject_friends" name="reject_friends" for="' +
+                                data.requests[i].request_id +':'+ data.requests[i].inviter +
+                                '" class="formbtn_l">拒绝</button></dl>';
                             $("#user_line dt").append(pendingMsg);
                         }
                     }
@@ -38,12 +40,10 @@ $(function(){
                             "backgroundPosition":"103px -345px"
                             })
                     }
-                    $("#accept_friends").click(function(){
-                        console.log($(this).attr("for"));
+                    $("button[name='accept_friends']").click(function(){
                         var kao = $(this).attr("for").split(":");
                         var request_id = kao[0];
                         var request_inviter = kao[1];
-                        console.log(kao);
                         $.ajax({
                             url: '/accept',
                             type:'get',
@@ -51,10 +51,28 @@ $(function(){
                             data:"inviter=" + request_inviter+"&request_id="+request_id,
                             success: function(data){
                                 if(data.response_code == 0){
-                                    alert('添加好友成功')
+                                    fetch_notification_message();
                                 }
+                                alert(data.response_message)
                             }
+                        })
+                    });
 
+                    $("button[name='reject_friends']").click(function(){
+                        var kao = $(this).attr("for").split(":");
+                        var request_id = kao[0];
+                        var request_inviter = kao[1];
+                        $.ajax({
+                            url: '/reject',
+                            type:'get',
+                            dataType:'json',
+                            data:"inviter=" + request_inviter+"&request_id="+request_id,
+                            success: function(data){
+                                if(data.response_code == 0){
+                                    fetch_notification_message();
+                                }
+                                alert(data.response_message);
+                            }
                         })
                     });
                 }
@@ -117,9 +135,13 @@ $(function(){
                      if(data.friend_requests>0){
                          if(data.friend_requests>9) $("#user+.bubble").css('padding-left','5px');
                             $('#user+.bubble').css('display','block').html(data.friend_requests);
+                     } else {
+                         // todo  去除数字样式
                      }
                      if(data.friend_comments+data.friend_messages>0){
                          $('#msg+.bubble').css('display','block').html(data.friend_comments+data.friend_messages);
+                     } else {
+                         // todo  去除数字样式
                      }
                       //alert("好友请求 : " + data.friend_requests + ", 用户评论 : " + data.friend_comments + ", 私信 : " + data.friend_messages);
                      //$("#requests_span").html(data.requests);
