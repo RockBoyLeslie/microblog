@@ -66,7 +66,7 @@ app.post('/requestFriend', user_request.requestFriend);
 app.get('/fetchRequests', user_request.fetchRequests);
 app.get('/reject', user_request.reject);
 app.get('/accept', user_request.accept);
-
+app.post('/accept',user_request.accept);
 // user relationship part
 app.get('/friends', user_relationship.fetchFriends);
 

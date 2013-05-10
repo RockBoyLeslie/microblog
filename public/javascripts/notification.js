@@ -9,6 +9,7 @@
 $(function(){
     fetch_notification_message();
     setInterval(fetch_notification_message,30*1000);
+
     $('#user_hover').hover(function(){
         $.ajax({
             url: '/fetchRequests',
@@ -20,7 +21,9 @@ $(function(){
                         if(i<5){
                             var inviterItem = data.requests[i].name
                             var pendingMsg = '<dl><span><a href="#">' + inviterItem +
-                                '</a>&nbsp;请求加您好友</span><button id="accept_friends" class="formbtn_l">同意</button>' +
+                                '</a>&nbsp;请求加您好友</span><button id="accept_friends" for="' +
+                                data.requests[i].request_id +':'+ data.requests[i].inviter +
+                                '" class="formbtn_l">同意</button>' +
                                 '<button id="reject_friends" class="formbtn_l">拒绝</button></dl>';
                             $("#user_line dt").append(pendingMsg);
                         }
@@ -29,8 +32,31 @@ $(function(){
                         $("#user_line dt").append('<dl><span><a href="#" class="more">查看更多消息...</a></span></dl>');
                     }
                     if(req_length==0){
-                        $("#user_line dt").append('<dl><span><a href="#" class="more">没有好友请求...</a></span></dl>');
+                        $("#user_line dt").append('<dl><span><a href="#" class="no_more">没有您的好友请求...</a></span></dl>');
+                        $("#user_line").css({
+                            "margin-left":"-90px",
+                            "backgroundPosition":"103px -345px"
+                            })
                     }
+                    $("#accept_friends").click(function(){
+                        console.log($(this).attr("for"));
+                        var kao = $(this).attr("for").split(":");
+                        var request_id = kao[0];
+                        var request_inviter = kao[1];
+                        console.log(kao);
+                        $.ajax({
+                            url: '/accept',
+                            type:'post',
+                            dataType:'json',
+                            data:"inviter=" + request_inviter+"&request_id="+request_id,
+                            success: function(data){
+                                if(data.response_code == 0){
+                                    alert('添加好友成功')
+                                }
+                            }
+
+                        })
+                    });
                 }
             }
         });
@@ -72,11 +98,11 @@ $(function(){
             $(this).addClass("active");
         },function(){
             $(this).removeClass("active").hide();
-            /*$(hover+" dt").html('');*/ // 清空
+            $(hover+" dt:not('#set_line dt')").html(''); // 清空
         });
         if(!$(hover).hasClass("active")){
             $(hover).hide();
-            /*$(hover+" dt").html('');*/  //清空
+            $(hover+" dt:not('#set_line dt')").html('');  //清空
         }else{
             $(hover).removeClass("active");
         }

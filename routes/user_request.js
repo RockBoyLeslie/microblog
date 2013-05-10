@@ -101,8 +101,8 @@ exports.fetchRequests = function(req, res) {
 
 // reject friend request for current_user
 exports.reject = function(req, res) {
-    var request_id = req.query.request_id;
-    var inviter = req.query.inviter;
+    var request_id = req.body['request_id'];
+    var inviter = req.body['inviter'];
     var invitee = req.session.user.id;
     pool.getConnection(function(err, connection){
         try {
@@ -123,8 +123,8 @@ exports.reject = function(req, res) {
 
 // accept friend request for current user
 exports.accept = function(req, res) {
-    var request_id = req.query.request_id;
-    var inviter = req.query.inviter;
+    var request_id = req.body['request_id'];
+    var inviter = req.body['inviter'];
     var invitee = req.session.user.id;
     pool.getConnection(function(err, connection){
         try {

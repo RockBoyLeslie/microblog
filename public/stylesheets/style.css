@@ -177,16 +177,16 @@ input.inputfocus{
     padding:4px 16px;
 }
 #user{
-    background-position: 0 0;
+    background-position: 3px 0;
 }
 
 
 #msg{
-    background-position:-75px 3px ;
+    background-position:-73px 3px ;
 }
 
 #set{
-    background-position: -33px 0;
+    background-position: 2px -33px;
 }
 
 #logout{
@@ -213,9 +213,19 @@ li.bubble {
     border-radius: 6px;
     padding:3px;
 }
-
+#set_line dt{
+    background-color: #2F6FAD;
+}
+#set_line dt a{
+    color: #fff;
+}
 #user_hover,#msg_hover,#set_hover{
-    padding: 9px 0;
+    padding: 9px 3px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+#user_hover:hover,#msg_hover:hover,#set_hover:hover{
+    background-color: #4e7eac;
 }
 #msg_line dt dl,#user_line dt dl,#set_line dt dl{
    padding:2px 3px;
@@ -236,7 +246,7 @@ li.bubble {
 }
 #msg_line{
     margin-left:-20px;
-    background-position:29px -345px;
+    background-position:33px -345px;
 }
 #set_line{
     margin-left:0;
@@ -245,4 +255,10 @@ li.bubble {
 .reglog li a.more{
     padding:0 4px;
     float: left;
+}
+.reglog li a.no_more{
+    padding:0 4px;
+    float: left;
+    text-decoration: none;
+    color: #787878;
 }
