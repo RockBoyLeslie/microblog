@@ -1,0 +1,29 @@
+//
+   Created with JetBrains WebStorm.
+   User: Sophia
+   Date: 13-5-6
+   Time: 下午10:29
+   To change this template use File | Settings | File Templates.
+
+extends ../layout
+block content
+    #container
+        h2 #{message.title}
+            #container
+                label(class="user_label",for="name")
+                    if session.user.id == message.from_user
+                        收信人： #{message.name}
+                    else
+                        发信人： #{message.name}
+                br
+                label(class="time_label")
+                    时间：#{message.created_at}
+                br
+                label(class="content_label")
+                    内容：#{message.content}
+                br
+                if session.user.id == message.to_user
+                    a(href="/sendMessage?to_user=#{message.from_user}&parent_id=#{message.id}") 回复
+
+
+

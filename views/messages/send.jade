@@ -1,0 +1,32 @@
+//
+   Created with JetBrains WebStorm.
+   User: Sophia
+   Date: 13-5-6
+   Time: 下午10:29
+   To change this template use File | Settings | File Templates.
+
+extends ../layout
+block content
+    #container
+        h2 发送私信
+        form.form_horizon(name="form_sendMessage",action="/sendMessage",method="post")
+            .formblock
+                label(class="user_label",for="name")
+                    span.required *
+                    收信人：
+                input#email(type="text",name="name",value="#{to_user.name}", disabled)
+            .formblock
+                label(class="title_label",for="title")
+                    span.required *
+                    标题 ：
+                input(type="text",name="title",id="title")
+            .formblock
+                label(class="content_label",for="content")
+                    span.required *
+                    内容 ：
+                textarea(name="content", id="content", rows="10", cols="80")
+                input(type="hidden",name="to_user", id="to_user", value="#{to_user.id}")
+                input(type="hidden",name="parent_id", id="parent_id", value="#{parent_id}")
+                br
+            button#sendMessagebtn.formbtn 发送
+
