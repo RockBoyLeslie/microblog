@@ -158,3 +158,31 @@ exports.accept = function(req, res) {
         }
     });
 };
+
+
+// list messages recieved
+exports.fetchMessages = function(req, res) {
+    var to_user = req.session.user.id;
+    pool.getConnection(function(err, connection) {
+        try {
+            connection.query(
+                'select m.id, m.from_user, u.name from microblog.private_messages m, microblog.user_accounts u ' +
+                    "where m.to_user = ? and m.status in ('0','1') and m.is_read = '0' and u.id = m.from_user order by m.created_at desc",
+                [to_user],
+                function(err, rows) {
+                    if (err) {
+                        throw err;
+                    }
+                    var data = {
+                        response_code : '0',
+                        messages : rows
+                    };
+                    res.json(data);
+                });
+        } catch (err) {
+            res.json({reponse_code : '-1', response_message : err});
+        } finally {
+            connection.end();
+        }
+    })
+};
