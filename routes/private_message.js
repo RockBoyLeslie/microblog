@@ -141,6 +141,7 @@ exports.show = function(req, res) {
                                 res.render("messages/show", {title : "查看私信", message : message});
                             });
                         }
+                        res.render("messages/show", {title : "查看私信", message : message});
                     } else {
                         res.send("无效的私信ID");
                     }
