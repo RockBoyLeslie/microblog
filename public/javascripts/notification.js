@@ -136,11 +136,12 @@ $(function(){
                          if(data.friend_requests>9) $("#user+.bubble").css('padding-left','5px');
                             $('#user+.bubble').css('display','block').html(data.friend_requests);
                      } else {
-                         // todo  去除数字样式
+                         $('#user+.bubble').css('display','none').html('');
                      }
                      if(data.friend_comments+data.friend_messages>0){
                          $('#msg+.bubble').css('display','block').html(data.friend_comments+data.friend_messages);
                      } else {
+                         $('#user+.bubble').css('display','none').html('');
                          // todo  去除数字样式
                      }
                       //alert("好友请求 : " + data.friend_requests + ", 用户评论 : " + data.friend_comments + ", 私信 : " + data.friend_messages);
