@@ -65,6 +65,7 @@ app.get('/find', user_account.find);
 // user request part
 app.post('/requestFriend', user_request.requestFriend);
 app.get('/fetchRequests', user_request.fetchRequests);
+app.get('/fetchMessages', user_request.fetchMessages);
 app.get('/reject', user_request.reject);
 app.get('/accept', user_request.accept);
 
