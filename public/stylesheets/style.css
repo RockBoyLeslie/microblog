@@ -13,6 +13,10 @@ li{
     list-style: none;
     float: left;
 }
+#container{
+    width:1024px;
+    margin: 0 auto;
+}
 *:focus {outline: none;}
 a {
   color: #2F6FAD;
@@ -20,10 +24,11 @@ a {
 }
 
 #index_l img{
-    margin: 20px 60px;
+    margin: 20px 20px;
 }
 #index_r{
     float: left;
+    margin:20px 5px;
 }
 
 #index_r h2,#container>h2{
@@ -32,10 +37,11 @@ a {
 .header_r li input{
     float: left;
 }
-.header_r a{
+.header_r>a{
     display: block;
     float: left;
 }
+
 .header_r div{
     float: left;
 }
@@ -54,13 +60,14 @@ a {
     padding: 4px 8px;
 }
 .reglog{
-    padding: 9px;
+    padding: 0 9px;
     float: right;
 }
 .reglog li{
-    padding:0 4px;
+    padding:9px 4px;
     margin:0 5px;
 }
+
 .reglog li a{
     color:#3498d8;
     line-height: 27px;
@@ -68,6 +75,16 @@ a {
 }
 .reglog li a:hover{
     text-decoration: underline;
+}
+.header_r{
+    height:48px;
+}
+.header_r>li a{
+    color: #fff;
+}
+.header_r>li a:hover{
+    color: #ddd;
+    text-decoration: none;
 }
 .reglog input{
     height: 23px;
@@ -113,8 +130,8 @@ a {
 }
 .formbtn_l{
     background: #e67e22;
-    padding: 2px 6px;
-    font: 13px '微软雅黑' ;
+    padding: 1px 5px;
+    font: 12px '微软雅黑' ;
     margin-left: 6px;
     border: 1px solid #e67e22;
 }
@@ -152,14 +169,6 @@ input.inputfocus{
     height: 45px;
 }
 
-.hide{
-    display: none;
-}
-
-.show{
-    display: block;
-}
-
 #msg,#user,#logout,#set,li.bubble{
     background: url('/images/buttons.png') no-repeat;
     padding:4px 16px;
@@ -175,10 +184,12 @@ input.inputfocus{
 
 #set{
     background-position: -33px 0;
+    margin: 9px 0;
 }
 
 #logout{
     background-position: -150px 0;
+    margin: 9px 0;
 }
 
 li.bubble {
@@ -195,23 +206,34 @@ li.bubble {
 }
 
 #msg_line dt,#user_line dt{
-
-    font-size: 14px;
+    font-size: 13px;
     border: 3px solid #2F6FAD;
     border-radius: 6px;
-    padding:4px;
-
-
+    padding:3px;
 }
 
+#user_hover,#msg_hover{
+    padding: 9px 0;
+}
 #msg_line dt dl,#user_line dt dl{
-   padding:4px;
+   padding:2px 3px;
 }
 
 #msg_line,#user_line{
     position: absolute;
-    margin-left: -3px;
-    margin-top: 46px;
-    background: url(/images/buttons.png) 10px -40px;
-    padding-top: 8px;
+    margin-left: -200px;
+    background: url(/images/buttons.png) no-repeat 200px -345px;
+    padding-top: 54px;
+    display: none;
+}
+#user_line{
+    margin-left:-190px;
+}
+#msg_line{
+    margin-left:-20px;
+    background-position:29px -345px;
+}
+.more{
+    padding:0 4px;
+    float: left;
 }
