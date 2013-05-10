@@ -34,6 +34,9 @@ a {
 #index_r h2,#container>h2{
     margin-left: 40px;
 }
+.header_r form{
+    float: left;
+}
 .header_r li input{
     float: left;
 }
@@ -225,6 +228,9 @@ li.bubble {
     padding-top: 54px;
     display: none;
 }
+#user_line dt dl>span{
+    display: inline-block;
+ }
 #user_line{
     margin-left:-190px;
 }
@@ -236,7 +242,7 @@ li.bubble {
     margin-left:0;
     background-position: 15px -345px;
 }
-.more{
+.reglog li a.more{
     padding:0 4px;
     float: left;
 }
