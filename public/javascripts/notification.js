@@ -46,7 +46,7 @@ $(function(){
                         console.log(kao);
                         $.ajax({
                             url: '/accept',
-                            type:'post',
+                            type:'get',
                             dataType:'json',
                             data:"inviter=" + request_inviter+"&request_id="+request_id,
                             success: function(data){

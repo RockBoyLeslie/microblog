@@ -106,7 +106,7 @@ exports.reject = function(req, res) {
     var invitee = req.session.user.id;
     pool.getConnection(function(err, connection){
         try {
-            connection.query("update user_requests set status = 'rejected' where id = ? and inviter = ? and invitee = ? and status = 'pending'", [request_id, inviter, invitee], function(err, rows){
+            connection.query("update microblog.user_requests set status = 'rejected' where id = ? and inviter = ? and invitee = ? and status = 'pending'", [request_id, inviter, invitee], function(err, rows){
                 if (err) {
                     throw err;
                 }
@@ -123,16 +123,16 @@ exports.reject = function(req, res) {
 
 // accept friend request for current user
 exports.accept = function(req, res) {
-    var request_id = req.body['request_id'];
-    var inviter = req.body['inviter'];
+    var request_id = req.query.request_id;
+    var inviter = req.query.inviter;
     var invitee = req.session.user.id;
     pool.getConnection(function(err, connection){
         try {
-            connection.query("update user_requests set status = 'approved' where id = ? and inviter = ? and invitee = ? and status = 'pending'", [request_id, inviter, invitee], function(err, rows){
+            connection.query("update microblog.user_requests set status = 'approved' where id = ? and inviter = ? and invitee = ? and status = 'pending'", [request_id, inviter, invitee], function(err, rows){
                 if (err) {
                     throw err;
                 }
-                connection.query("select 1 from user_relationships where (user_id = ? and friend_id = ?) or (user_id = ? or friend_id = ?)", [inviter, invitee, invitee, inviter], function(err, rows, fields){
+                connection.query("select 1 from microblog.user_relationships where (user_id = ? and friend_id = ?) or (user_id = ? or friend_id = ?)", [inviter, invitee, invitee, inviter], function(err, rows, fields){
                     if (err) {
                         throw err;
                     }
@@ -140,7 +140,7 @@ exports.accept = function(req, res) {
                         res.json({response_code : '0', response_message : '你俩已经是好友了'});
                         return;
                     } else {
-                        connection.query("insert into user_relationships(user_id, friend_id) values (?,?),hge(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
+                        connection.query("insert into microblog.user_relationships(user_id, friend_id) values (?,?),hge(?,?)", [inviter, invitee, invitee, inviter], function(err, rows){
                             if (err) {
                                 throw err;
                             }
