@@ -28,6 +28,9 @@ $(function(){
                     if(req_length>=5){
                         $("#user_line dt").append('<dl><span><a href="#" class="more">查看更多消息...</a></span></dl>');
                     }
+                    if(req_length==0){
+                        $("#user_line dt").append('<dl><span><a href="#" class="more">没有好友请求...</a></span></dl>');
+                    }
                 }
             }
         });
@@ -54,7 +57,9 @@ $(function(){
         selectLeave("#msg_line");
     });
     $('#set_hover').hover(function(){
-            delSiblings(this);
+            $('#set_line').show();
+        },function(){
+            selectLeave("#set_line");
         }
     );
     function delSiblings(s){
@@ -67,11 +72,11 @@ $(function(){
             $(this).addClass("active");
         },function(){
             $(this).removeClass("active").hide();
-            $(hover+" dt").html('');
+            /*$(hover+" dt").html('');*/ // 清空
         });
         if(!$(hover).hasClass("active")){
             $(hover).hide();
-            $(hover+" dt").html('');
+            /*$(hover+" dt").html('');*/  //清空
         }else{
             $(hover).removeClass("active");
         }

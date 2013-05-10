@@ -46,8 +46,20 @@ html
                                                         a(href="#") xxxx
                                                         &nbsp; 新信息
                                                     button(id="seemsg",class="formbtn_l") 查看
-                                    a#set_hover(href="#")
+                                    ul#set_hover(href="#")
                                         li(id="set") &nbsp;
+                                        li(id="set_line",class="hide")
+                                            dt
+                                                dl.set_list
+                                                    span
+                                                        a(href="/friends") 好友列表
+                                                dl.set_list
+                                                    span
+                                                        a(href="/inbox") 我的私信
+                                                dl.set_list
+                                                    span
+                                                        a(href="/resetPassword") 忘记密码
+
                                     a#logout_hover(href="/logout")
                                         li(id="logout") &nbsp;
 
