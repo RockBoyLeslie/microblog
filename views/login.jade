@@ -9,7 +9,7 @@ extends layout
 block content
     title= title
     #container
-        h2 用户登录
+        h2#login_img 用户登录
         if response_message != null
             h3  #{response_message}
         form.form_horizon(name="form_login",action="/login",method="post")

@@ -1,5 +1,12 @@
 extends layout
 block content
     title= title
-    #container
-        h2 Welcome to the home page, #{session.user.name}
+    #container.clearfix
+        #home_l
+            #post_micro
+                textarea
+                button
+        #home_r
+            #user_info
+                span #{session.user.name}
+                img(src="/images/normal.jpg")

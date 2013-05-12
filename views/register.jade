@@ -9,7 +9,7 @@ extends layout
 block content
     title= title
     #container
-        h2 用户注册
+        h2#register_msg 用户注册
         if response_message != null
             h3 #{response_message}
         form(id="form_register",action="/register",class="form_horizon",method="post")

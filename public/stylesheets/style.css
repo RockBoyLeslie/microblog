@@ -1,7 +1,7 @@
 body {
   font: 14px "微软雅黑","黑体";
 }
-body,div,ul,li,img,dl,dt{
+body,div,ul,li,img,dl,dt,textarea,form,h2{
     margin: 0;
     padding: 0;
 }
@@ -13,6 +13,9 @@ li{
     list-style: none;
     float: left;
 }
+input,textarea{
+    font: 13px "微软雅黑";
+}
 #container{
     width:1024px;
     margin: 0 auto;
@@ -21,6 +24,15 @@ li{
 a {
   color: #2F6FAD;
   text-decoration: none;
+}
+
+.clearfix:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content:' ';
+    clear:both;
+    height: 0;
 }
 
 #index_l img{
@@ -32,7 +44,9 @@ a {
 }
 
 #index_r h2,#container>h2{
-    margin-left: 40px;
+    margin:10px 0 12px 20px;
+    padding: 8px 0 8px 38px;
+    line-height: 20px;
 }
 .header_r form{
     float: left;
@@ -58,6 +72,10 @@ a {
     width:1064px;
     margin:0 auto;
 }
+.welcome{
+    float: left;
+}
+
 .logo{
     float:left;
     padding: 4px 8px;
@@ -67,10 +85,14 @@ a {
     float: right;
 }
 .reglog li{
-    padding:9px 4px;
+    padding:9px 5px;
     margin:0 5px;
 }
-
+.welcome li{
+    margin-top: 3px;
+    color: #fff;
+    font-size: 13px;
+}
 .reglog li a{
     color:#3498d8;
     line-height: 27px;
@@ -90,6 +112,7 @@ a {
     text-decoration: none;
 }
 .reglog input{
+    width: 180px;
     height: 23px;
     border-radius: 15px;
     border: 1px solid #eee;
@@ -112,14 +135,21 @@ a {
 .return{
 
 }
-.form_horizon input{
+.form_horizon input,.form_send input{
     margin: 5px 0;
     text-indent: 5px;
     height: 30px;
-    width: 270px;
     padding: 0 0 0 1px;
     border-radius: 3px;
     border:1px solid #ccc;
+}
+
+.form_horizon input{
+    width: 270px;
+}
+
+.form_send input{
+    width: 450px;
 }
 
 .formbtn,.formbtn_l{
@@ -139,7 +169,7 @@ a {
     border: 1px solid #e67e22;
 }
 
-input.inputfocus{
+input.inputfocus,textarea#content.inputfocus{
     border-radius: 3px;
     box-shadow: inset 0 2px 2px rgba(0,0,0,0.075);
     moz-transition: border linear .2s,box-shadow linear .2s;
@@ -155,12 +185,17 @@ input.inputfocus{
 
 }
 
-.form_horizon label{
+.form_horizon label,.form_send label{
     width:97px;
     display: block;
     float: left;
     text-align: right;
     padding: 11px;
+}
+
+.form_send label{
+    padding-left: 4px;
+    width: 85px;
 }
 
 .required{
@@ -223,6 +258,7 @@ li.bubble {
     padding: 9px 3px;
     cursor: pointer;
     border-radius: 3px;
+    margin-top: 1px;
 }
 #user_hover:hover,#msg_hover:hover,#set_hover:hover{
     background-color: #4e7eac;
@@ -234,8 +270,8 @@ li.bubble {
 #msg_line,#user_line,#set_line{
     position: absolute;
     margin-left: -200px;
-    background: url(/images/buttons.png) no-repeat 200px -345px;
-    padding-top: 54px;
+    background: url(/images/buttons.png) no-repeat 200px -389px;
+    margin-top: 38px;
     display: none;
 }
 #user_line dt dl>span{
@@ -246,11 +282,11 @@ li.bubble {
 }
 #msg_line{
     margin-left:-20px;
-    background-position:33px -345px;
+    background-position:33px -389px;
 }
 #set_line{
     margin-left:0;
-    background-position: 15px -345px;
+    background-position: 15px -389px;
 }
 .reglog li a.more{
     padding:0 4px;
@@ -261,4 +297,125 @@ li.bubble {
     float: left;
     text-decoration: none;
     color: #787878;
+}
+textarea#content{
+    border: 1px solid #ccc;
+    margin-top: 7px;
+    border-radius: 3px;
+    width:436px;
+    padding: 8px;
+    resize: vertical;
+    font: 13px "微软雅黑";
+}
+#sendMessagebtn{
+    margin-left: 488px;
+    margin-top: 10px;
+}
+.red{
+    color:#e67e22;
+}
+#tb_wrapper{
+
+}
+.list{
+    margin:0 15px;
+    border-collapse:collapse;
+    background: #fafaf4
+}
+.list tr:first-child{
+    background: #b4daf4;
+    border-radius: 3px;
+}
+.list tr:last-child{
+    height: 10px;
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+}
+.list tr:first-child:hover{
+    background: #b4daf4;
+}
+.list tr{
+     float: none;
+     border-bottom: 1px dashed #ccc;
+}
+.list tr:hover{
+    background: #f9ffc5;
+}
+.list td button{
+    float: right;
+    padding: 3px 10px;
+    font-size: 14px;
+    margin-left: 4px;
+}
+.list td,.list th{
+     padding: 6px 25px;
+}
+.list th{
+    font-size: 16px;
+}
+
+.list th:first-child{
+    border-top-left-radius: 4px;
+}
+.list th:last-child{
+    border-top-right-radius: 4px;
+}
+.tb_num span{
+    padding:0 4px ;
+    font-size: 13px;
+    background: #e67e22;
+    border-radius: 3px;
+    color: #fff;
+}
+.list .tb_num{
+    padding:4px 15px ;
+}
+.tb_photo img{
+    margin: 4px 0 0 15px;
+}
+
+/*所有标题背景图标*/
+#friends_img,#send_img,#login_img,#find_img,#inbox_img,#outbox_img,#show_img{
+    background: url('/images/buttons.png') no-repeat;
+}
+#friends_img{
+    background-position: -265px -32px;
+}
+#send_img{
+    background-position: -263px -64px;
+}
+#find_img{
+    background-position: -265px -187px;
+}
+#login_img{
+    background-position: -263px -221px;
+}
+#inbox_img{
+    background-position: -265px -417px;
+}
+#outbox_img{
+    background-position: -265px -386px;
+}
+#show_img{
+    background-position: -265px -354px;
+}
+/*END*/
+
+.unread{
+    color:#e74c3c ;
+}
+#show_message{
+    border-top: 2px solid #2F6FAD;
+    padding: 5px 15px;
+    width:700px;
+}
+
+/*个人主页*/
+#home_l{
+    width: 700px;
+    float: left;
+}
+#home_r{
+    width:324px;
+    float: left;
 }

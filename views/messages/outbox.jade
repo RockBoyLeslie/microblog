@@ -8,13 +8,25 @@
 extends ../layout
 block content
     #container
-        h2  发信箱  &nbsp;&nbsp;
+        h2#outbox_img  发信箱  &nbsp;&nbsp;
         if (messages != null)
-            for message,index in messages
-                li #{index + 1}.
-                a(href="/showMessage?id=#{message.id}") #{message.title}
-                &nbsp;&nbsp;to &nbsp;&nbsp;
-                a(href="#") #{message.name}
-                br
+            table.list
+                tr
+                    th
+                    th 标题
+                    th 发信人
+                    th 操作
+                    th 发信时间
+                for message,index in messages
+                    tr
+                        td.tb_num
+                            span #{index + 1}
+                        td
+                            a(href="/showMessage?id=#{message.id}") #{message.title}
+                        td
+                            a(href="#") #{message.name}
+                        td
+                            button(for="#{message.id}",name="see_content",class="formbtn") 查看
+                        td #{message.created_at}
 
 

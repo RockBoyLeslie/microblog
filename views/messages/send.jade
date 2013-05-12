@@ -8,8 +8,9 @@
 extends ../layout
 block content
     #container
-        h2 发送私信
-        form.form_horizon(name="form_sendMessage",action="/sendMessage",method="post")
+        br
+        h2#send_img 发送私信
+        form.form_send(name="form_sendMessage",action="/sendMessage",method="post")
             .formblock
                 label(class="user_label",for="name")
                     span.required *
@@ -20,7 +21,7 @@ block content
                     span.required *
                     标题 ：
                 input(type="text",name="title",id="title")
-            .formblock
+            .clearfix
                 label(class="content_label",for="content")
                     span.required *
                     内容 ：

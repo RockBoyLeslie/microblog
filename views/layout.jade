@@ -23,11 +23,12 @@ html
                                 li
                                     a(href='/register') 注册
                             else
+                                ul.welcome
+                                    li 欢迎您 , #{session.user.name}
                                 form(action="/find")
                                     li
                                         input(type="text", name="keyword", id="keyword")
                                         button(id="search")
-
                                 ul(id="user_hover",href="#")
                                     li(id="user") &nbsp;
                                     li(class="bubble")
@@ -41,18 +42,13 @@ html
                                             dl.comments_list
                                                 span
                                                     a(href="#") xxxx
-                                                    &nbsp; 新信息
-                                                button(id="seecmt",class="formbtn_l") 查看
-                                            dl.msgs_list
-                                                span
-                                                    a(href="#") xxxx
-                                                    &nbsp; 新信息
-                                                button(id="seemsg",class="formbtn_l") 查看
+                                                    &nbsp; 新评论
+                                                button(class="formbtn_l") 查看
                                 ul#set_hover(href="#")
                                     li#set &nbsp;
                                     li#set_line.hide
                                         dt
-                                            dl.friends_list
+                                            dl.friend_list
                                                 span
                                                     a(href="/friends") 好友列表
                                             dl.message_list

@@ -8,18 +8,31 @@
 extends ../layout
 block content
     #container
-        h2  收信箱  &nbsp;&nbsp;
+        br
+        h2#inbox_img 收信箱  &nbsp;&nbsp;
         if (messages != null)
-            for message,index in messages
-                li #{index + 1}.
-                a(href="/showMessage?id=#{message.id}") #{message.title}
-                &nbsp;&nbsp;from &nbsp;&nbsp;
-                a(href="#") #{message.name}
-                &nbsp;&nbsp;
-                if message.is_read == '0'
-                    未读
-                else
-                    已读
-                br
-
-
+            table.list
+                tr
+                    th
+                    th 标题
+                    th 发信人
+                    th 状态
+                    th 操作
+                    th 发信时间
+                for message,index in messages
+                    tr
+                        td.tb_num
+                            span #{index + 1}
+                        td.tb
+                            a(href="/showMessage?id=#{message.id}") #{message.title}
+                        td
+                            a(href="#") #{message.name}
+                        td
+                            if message.is_read == '0'
+                                span.unread 未读
+                            else
+                                已读
+                            br
+                        td.tb_todo
+                            button(for="#{message.id}",name="see_content",class="formbtn") 查看
+                        td #{message.created_at}

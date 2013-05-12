@@ -10,12 +10,28 @@ extends ../layout
 block content
     title= title
     #container
-        h2 搜索结果
+        br
+        h2#find_img 搜索结果
         if (users != null)
-            for user,index in users
-                li #{index + 1}. #{user.name} #{user.email}
-                if (user.type == 'friend')
-                    button(id="sendMessage", name="sendMessage",for="#{user.id}", class="formbtn") 发送私信
-                else
-                    button(id="sendMessage", name="requestFriend", for="#{user.id}", class="formbtn") 加为好友
-                br
+            table.list
+                tr
+                    th
+                    th 用户ID
+                    th 用户头像
+                    th 用户邮箱
+                    th 可用操作
+                for user,index in users
+                    tr
+                        td.tb_num
+                            span #{index + 1}
+                        td.tb_name #{user.name}
+                        td.tb_photo
+                            img(src="/images/normal.jpg")
+                        td.tb_email #{user.email}
+                        td.tb_todo
+                            if (user.type == 'friend')
+                                button(id="sendMessage", name="sendMessage",for="#{user.id}", class="formbtn") 发送私信
+                            else
+                                button(id="sendMessage", name="requestFriend", for="#{user.id}", class="formbtn") 加为好友
+                            br
+                tr

@@ -70,7 +70,7 @@ exports.outbox = function(req, res) {
     pool.getConnection(function(err, connection) {
         try {
             connection.query(
-                'select m.id, m.to_user, m.title, u.name from microblog.private_messages m, microblog.user_accounts u ' +
+                'select m.id, m.to_user, m.title, m.created_at, u.name from microblog.private_messages m, microblog.user_accounts u ' +
                 "where m.from_user = ? and m.status in ('0','2') and u.id = m.to_user order by m.created_at desc",
                 [from_user],
                 function(err, rows) {
@@ -97,7 +97,7 @@ exports.inbox = function(req, res) {
     pool.getConnection(function(err, connection) {
         try {
             connection.query(
-                'select m.id, m.from_user, m.title,m.is_read, u.name from microblog.private_messages m, microblog.user_accounts u ' +
+                'select m.id, m.from_user, m.title, m.is_read, m.created_at, u.name from microblog.private_messages m, microblog.user_accounts u ' +
                     "where m.to_user = ? and m.status in ('0','1') and u.id = m.from_user order by m.is_read, m.created_at desc",
                 [to_user],
                 function(err, rows) {

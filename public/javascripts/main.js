@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 $(function(){
-    $('.formblock input').attr({
+    $('.formblock input,textarea').attr({
         'onblur':"this.className="+"'inputblur'",
         'onfocus':"this.className="+"'inputfocus'"
     });
