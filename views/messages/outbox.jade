@@ -27,6 +27,6 @@ block content
                             a(href="#") #{message.name}
                         td
                             button(for="#{message.id}",name="see_content",class="formbtn") 查看
-                        td #{message.created_at}
+                        td #{message.created_at.toISOString().replace(/T/, ' ').replace(/\..+/, '')}
 
 
