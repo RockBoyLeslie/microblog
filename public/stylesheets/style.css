@@ -436,6 +436,10 @@ textarea#content{
     border-radius: 4px;
     margin-top: 20px;
 }
+#post_micro{
+    padding-bottom: 15px;
+    border-bottom: 2px solid #2F6FAD;
+}
 #post_micro button{
     float: right;
     margin-right: 70px;
@@ -495,25 +499,25 @@ textarea#content{
     font-weight: bold;
 }
 #home_i span{
-    background-position: -1px -201px;
+    background-position: -3px -201px;
 }
 #friend_i span{
-    background-position: -1px -86px;
+    background-position: -3px -86px;
 }
 #msg_i span{
-    background-position: -1px -114px;
+    background-position: -3px -114px;
 }
 #comment_i span{
-    background-position: -1px -140px;
+    background-position: -3px -140px;
 }
 #outbox_i span{
-    background-position: -1px -234px;
+    background-position: -3px -234px;
 }
 #set_i span{
-    background-position: -1px -167px;
+    background-position: -3px -167px;
 }
 #help_i span{
-    background-position: -1px -293px;
+    background-position: -3px -293px;
 }
 #home_l h3{
     margin-left: 15px;
@@ -541,4 +545,29 @@ textarea#content{
 }
 #friends_sg span{
     display: block;
+}
+#micro_list>h4{
+    padding: 8px;
+    color: #e67e22;
+}
+#micro_list li{
+    padding: 15px 8px;
+    width: 100%;
+    border-bottom: 1px dashed #eee;
+}
+#micro_list img{
+    float: left;
+}
+.micro_co{
+    float: left;
+    width: 470px;
+    margin-left: 25px;
+    padding: 10px;
+    border: 1px solid #cce;
+    border-radius: 4px;
+    background: #fafafa;
+}
+.micro_co h4{
+    color: #2F6FAD;
+    margin-bottom: 5px;
 }
