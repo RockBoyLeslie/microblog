@@ -141,6 +141,9 @@ $(function(){
             selectLeave("#set_line","#set_hover");
         }
     );
+    $('.write').click(function(){
+        $('.comment_body,.micro_co dt').show();
+    });
     function selectLeave(hover,up){
         $(hover+" dt:not('#set_line dt')").html('');
         $(hover+up).hover(function(){

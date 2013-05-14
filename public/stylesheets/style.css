@@ -442,7 +442,7 @@ textarea#content{
 }
 #post_micro button{
     float: right;
-    margin-right: 70px;
+    margin-right: 50px;
     margin-top: 10px;
     font-size: 14px;
 }
@@ -570,4 +570,43 @@ textarea#content{
 .micro_co h4{
     color: #2F6FAD;
     margin-bottom: 5px;
+}
+.micro_co dt{
+    float: left;
+    width: 468px;
+    display: none;
+}
+.micro_co dt img{
+    margin-right: 8px;
+}
+.micro_co dl{
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+.micro_co dl:last-child{
+    border-bottom: 0px;
+}
+.write{
+    float: left;
+    margin: 10px;
+    width: 448px;
+}
+.write a{
+    float: right;
+}
+.comment_body{
+    float: left;
+    display: none;
+}
+.comment_body textarea{
+    width: 454px;
+    padding: 7px;
+    resize: none;
+}
+.comment_body button{
+    float: right;
+}
+.micro_co dt span{
+    padding: 5px;
+    font-size: 13px;
 }
