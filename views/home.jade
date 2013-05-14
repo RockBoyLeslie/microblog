@@ -3,10 +3,37 @@ block content
     title= title
     #container.clearfix
         #home_l
+            h3 有什么新鲜事，分享一下吧~
             #post_micro
-                textarea
-                button
+                .area_w
+                    textarea
+                span#arrow
+                button.formbtn_l  发表
         #home_r
-            #user_info
-                span #{session.user.name}
-                img(src="/images/normal.jpg")
+            #user_info.clearfix
+                img(src="/images/large.png")
+                ul#user_r
+                    li #{session.user.name}
+                    li xxxxxxxxx
+                    li xxxxxxxxx
+            #friends_sg.clearfix
+                h4 好友推荐
+                ul
+                    li
+                        img(src="/images/normal.jpg")
+                        span xxx
+                    li
+                        img(src="/images/normal.jpg")
+                        span xxx
+                    li
+                        img(src="/images/normal.jpg")
+                        span xxx
+                    li
+                        img(src="/images/normal.jpg")
+                        span xxx
+                    li
+                        img(src="/images/normal.jpg")
+                        span xxx
+                    li
+                        img(src="/images/normal.jpg")
+                        span xxx

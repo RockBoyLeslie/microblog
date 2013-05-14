@@ -1,9 +1,21 @@
 body {
   font: 14px "微软雅黑","黑体";
 }
-body,div,ul,li,img,dl,dt,textarea,form,h2{
+body,div,ul,li,img,dl,dt,textarea,form,h2,h4{
     margin: 0;
     padding: 0;
+}
+#tabs{
+    width: 180px;
+    float: left;
+}
+#container{
+    width: 824px;
+    float: left;
+    margin-left: 10px;
+}
+#container1{
+    width: 1024px;
 }
 ul{
     float: left;
@@ -16,7 +28,7 @@ li{
 input,textarea{
     font: 13px "微软雅黑";
 }
-#container{
+#wrapper{
     width:1024px;
     margin: 0 auto;
 }
@@ -69,7 +81,7 @@ a {
 }
 .header_in{
     height:48px;
-    width:1064px;
+    width:1024px;
     margin:0 auto;
 }
 .welcome{
@@ -78,7 +90,7 @@ a {
 
 .logo{
     float:left;
-    padding: 4px 8px;
+    padding: 4px 8px 0 8px;
 }
 .reglog{
     padding: 0 9px;
@@ -247,6 +259,7 @@ li.bubble {
     border: 3px solid #2F6FAD;
     border-radius: 6px;
     padding:3px;
+    background: #fff;
 }
 #set_line dt{
     background-color: #2F6FAD;
@@ -412,10 +425,120 @@ textarea#content{
 
 /*个人主页*/
 #home_l{
-    width: 700px;
+    width: 580px;
     float: left;
+    padding: 7px;
+    margin:10px 6px 0 0;
 }
 #home_r{
-    width:324px;
+    width:204px;
     float: left;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+#post_micro button{
+    float: right;
+    margin-right: 70px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+#post_micro textarea{
+    width: 500px;
+    min-height: 100px;
+    border: 0;
+    padding: 10px;
+    resize: none;
+}
+.area_w{
+    border: 1px solid #cdd;
+    margin:0 50px 0 20px;
+    width: 521px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 1px 0px #eaeaea inset;
+    -moz-box-shadow: 1px 1px 1px 0px #eaeaea inset;
+    box-shadow: 1px 1px 1px 0px #eaeaea inset;
+}
+#tabs ul{
+    width: 180px;
+    background: #f3f3f3;
+    border-radius: 3px;
+    box-shadow: inset 0 2px 2px rgba(0,0,0,0.075);
+    margin-top: 20px;
+}
+#tabs li{
+    width: 100px;
+    height: 20px;
+    padding: 10px 40px;
+    font-size: 14px;
+}
+#tabs li:hover{
+    background:#eaeade url("/images/left_nav_border.png") no-repeat -120px 0;
+}
+#find_img+table,#friends_img,#friends_img+table{
+    margin-left: 30px !important;
+}
+#arrow{
+    display: block;
+    width: 11px;
+    height: 19px;
+    position: absolute;
+    margin-top: -93px;
+    margin-left: 542px;
+    background: url('/images/all_iconbtn.png') no-repeat -475px -275px;
+}
+#tabs span{
+    background: url("/images/buttons.png") no-repeat;
+    padding: 3px 13px;
+    margin-right: 15px;
+}
+#tabs a{
+    font-weight: bold;
+}
+#home_i span{
+    background-position: -1px -201px;
+}
+#friend_i span{
+    background-position: -1px -86px;
+}
+#msg_i span{
+    background-position: -1px -114px;
+}
+#comment_i span{
+    background-position: -1px -140px;
+}
+#outbox_i span{
+    background-position: -1px -234px;
+}
+#set_i span{
+    background-position: -1px -167px;
+}
+#help_i span{
+    background-position: -1px -293px;
+}
+#home_l h3{
+    margin-left: 15px;
+}
+#user_info,#friends_sg{
+    padding:10px;
+    background: #fafafa;
+    border:1px solid #eee;
+    margin-bottom: 15px;
+}
+#user_info img{
+    float: left;
+}
+#user_info ul{
+    margin-left: 10px;
+    width: 75px;
+}
+#user_info li{
+    width: 100%;
+}
+#friends_sg li{
+    margin-top: 8px;
+    padding: 0 11px 0 12px;
+    text-align: center;
+}
+#friends_sg span{
+    display: block;
 }

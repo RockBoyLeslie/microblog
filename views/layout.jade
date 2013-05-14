@@ -60,7 +60,31 @@ html
                                             dl.logout
                                                 span
                                                     a(href="/logout") 退出登录
-
-
-
-        block content
+        #wrapper.clearfix
+            if session.user != null
+                #tabs
+                   ul
+                       li
+                       li#home_i
+                           span
+                           a(href="/home") 首页
+                       li#friend_i
+                           span
+                           a(href="/friends") 我的好友
+                       li#msg_i
+                           span
+                           a(href="/inbox") 我的私信
+                       li#comment_i
+                           span
+                           a(href="/comments") 我的评论
+                       li#outbox_i
+                           span
+                           a(href="/outbox") 发件箱
+                       li#set_i
+                           span
+                           a(href="/xx") 设置
+                       li#help_i
+                           span
+                           a(href="/help") 帮助
+                       li
+            block content

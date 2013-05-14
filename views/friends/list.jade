@@ -13,22 +13,21 @@ block content
         br
         h2#friends_img 我的好友
         if (friends != null)
-            #tb_wrapper
-                table.list
-                    tr
-                        th
-                        th 好友ID
-                        th 好友头像
-                        th 好友邮箱
-                        th 操作
-                    for friend,index in friends
-                        tr.clearfix
-                            td.tb_num
-                                span #{index + 1}
-                            td.tb_name #{friend.name}
-                            td.tb_photo
-                                img(src="/images/normal.jpg")
-                            td.tb_email #{friend.email}
-                            td.tb_todo
-                                button(name="sendMessage",for="#{friend.friend_id}", class="formbtn") 发送私信
-                    tr
+            table.list
+                tr
+                    th
+                    th 好友ID
+                    th 好友头像
+                    th 好友邮箱
+                    th 操作
+                for friend,index in friends
+                    tr.clearfix
+                        td.tb_num
+                            span #{index + 1}
+                        td.tb_name #{friend.name}
+                        td.tb_photo
+                            img(src="/images/normal.jpg")
+                        td.tb_email #{friend.email}
+                        td.tb_todo
+                            button(name="sendMessage",for="#{friend.friend_id}", class="formbtn") 发送私信
+                tr
