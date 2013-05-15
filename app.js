@@ -9,6 +9,7 @@ var express = require('express')
   , user_request = require('./routes/user_request')
   , user_relationship = require('./routes/user_relationship')
   , private_message = require('./routes/private_message')
+  , dynamic_message = require('./routes/dynamic_message')
   , http = require('http')
   , path = require('path')
   , cookieStore = require('connect/lib/middleware/session/memory')
@@ -78,6 +79,10 @@ app.post('/sendMessage', private_message.sendMessage);
 app.get('/outbox', private_message.outbox);
 app.get('/inbox', private_message.inbox);
 app.get('/showMessage', private_message.show);
+
+//user dynamic_message part
+app.post('/sendBlog', dynamic_message.sendBlog);
+app.get('/listBlog', dynamic_message.listBlog);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

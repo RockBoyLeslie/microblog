@@ -1,37 +1,76 @@
 var pool = require('../db/dbconnection').pool;
+var fs = require('fs');
+var mustache = require('mustache');
 
-// send message
+// send blog
 exports.sendBlog = function(req, res) {
-    var from_user = req.session.user.id;
-    var to_user = req.body['to_user'];
-    var parent_id = req.body['parent_id'] ;
-    if (!parent_id) {
-        parent_id = 0;
-    }
-    var title = req.body['title'];
+    var user_id = req.session.user.id;
     var content = req.body['content'];
-    if (!title || !content) {
-        res.send("私信标题和内容不能为空");
-    }
-
     pool.getConnection(function(err, connection) {
         try {
+            connection.query('insert into microblog.dynamic_messages(content, user_id) values (?,?)', [content,user_id], function(err, rows) {
+                if (err) {
+                    throw err;
+                }
+            });
             connection.query(
-                'insert into microblog.private_messages(from_user, to_user, title, content, parent_id) values (?,?,?,?,?)',
-                [from_user,to_user,title,content,parent_id],
-                function(err, rows) {
+                'select m.content, m.id, m.created_at, m.user_id, u.name from microblog.dynamic_messages m, microblog.user_accounts u where m.id = last_insert_id() and u.id = m.user_id',
+                [],
+                function(err, rows, fields) {
                     if (err) {
                         throw err;
                     }
-                    res.redirect('/outbox');
-                });
+                    fs.readFile('views/blog/blog.html', function(err, template){
+                        if (err) {
+                            throw err;
+                        }
+                        var html = mustache.to_html(template.toString(), rows[0]);
+                        res.json({response_code : 0, html : html});
+                        return;
+                    });
+                }
+            )
         } catch (err) {
-            res.send(err);
+            res.json({response_code : -1, response_message : err});
         } finally {
             connection.end();
         }
     })
 };
+
+// list blogs sent by friends and myself
+exports.listBlog = function(req, res) {
+    var current_user = req.session.user.id;
+    pool.getConnection(function(err, connection) {
+        try {
+            connection.query(
+                "select m.content, m.id, m.created_at, m.user_id, u.name from microblog.dynamic_messages m, microblog.user_accounts u where " +
+                "(m.user_id = ? or m.user_id in (select friend_id from microblog.user_relationships where user_id = ? and type = 'friend'))  and u.id = m.user_id order by m.created_at desc",
+                [current_user, current_user],
+                function(err, rows, fields) {
+                    if (err) {
+                        throw err;
+                    }
+                    fs.readFile('views/blog/blog.html', function(err, template){
+                        if (err) {
+                            throw err;
+                        }
+                        var html = '';
+                        for (var i = 0; i < rows.length; i ++) {
+                            html += mustache.to_html(template.toString(), rows[i]);
+                        }
+                        res.json({response_code : 0, html : html});
+                        return;
+                    });
+                }
+            );
+        } catch (err) {
+            res.json({response_code : -1, response_message : err});
+        } finally {
+            connection.end();
+        }
+    })
+}
 
 // show private message
 exports.show = function(req, res) {
