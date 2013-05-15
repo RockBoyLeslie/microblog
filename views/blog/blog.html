@@ -1,23 +1,21 @@
 <li>
     <img src="/images/normal.jpg">
-    <a href="#">{{name}}</a>
     <div class="micro_co">
+        <div>
+        <a href="#"><h4>{{name}}</h4></a>
         <span>{{content}}</span>
-        <div class="write">
-            <a href="javascript:void(0);" id="comment_a_{{id}}">评论</a>
         </div>
-        <div id="comment_div_{{id}}">
-            <div class="comment_body">
-                <textarea id="textarea_comment_{{id}}"></textarea>
-                <button class="formbtn_l" name="sendBlog" for="{{id}}">发表</button>
-            </div>
-            <dt id="comment_dt">
-                <dl class="clearfix">
-                    <img src="/images/normal.jpg">
-                    <a href="#">sophia</a>
-                    <span>: 据谷歌官方博客报道，谷歌即将在未来几周内将整合Google Drive</span>
-                </dl>
-            </dt>
+        <span class="write" id="comment_a_{{id}}">评论</span>
+        <div class="comment_body">
+            <textarea id="textarea_comment_{{id}}"></textarea>
+            <button class="formbtn_l" name="sendBlog" for="{{id}}">发表</button>
         </div>
+        <dt id="comment_dt">
+            <dl class="clearfix">
+                <img src="/images/normal.jpg">
+                <a href="#">sophia</a>
+                <span>: 据谷歌官方博客报道，谷歌即将在未来几周内将整合Google Drive</span>
+            </dl>
+        </dt>
     </div>
 </li>
