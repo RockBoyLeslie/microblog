@@ -59,7 +59,7 @@ exports.listBlog = function(req, res) {
                         for (var i = 0; i < rows.length; i ++) {
                             html += mustache.to_html(template.toString(), rows[i]);
                         }
-                        html+='<script type="text/javascript" src="/javascripts/comment.js"></script>';
+                        /*html+='<script type="text/javascript" src="/javascripts/comment.js"></script>';*/
                         res.json({response_code : 0, html : html});
                         return;
                     });

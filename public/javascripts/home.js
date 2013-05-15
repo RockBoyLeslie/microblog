@@ -41,6 +41,13 @@ $(function(){
             }
         });
     });
+    $(document).on('click','.write',function(){
+        if($(this).next().css('display')=='none'){
+            $(this).nextAll().slideDown(500);
+        }else{
+            $(this).nextAll().slideUp(500);
+        }
+    })
 });
 
 
