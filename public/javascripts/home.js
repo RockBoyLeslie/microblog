@@ -75,6 +75,7 @@ $(function(){
             success : function(data) {
                 if (data.response_code == 0) {
                     $("#comment_dt_"+message_id).prepend(data.html);
+                    $("#textarea_comment_" + message_id).val('');
                 } else {
                     alert(data.response_message)
                 }

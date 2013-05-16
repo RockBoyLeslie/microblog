@@ -541,7 +541,7 @@ textarea#content{
 }
 #friends_sg li{
     margin-top: 8px;
-    padding: 0 11px 0 12px;
+    padding: 0 2px 0 2px;
     text-align: center;
 }
 #friends_sg span{
@@ -590,13 +590,14 @@ textarea#content{
 .write{
     display: block;
     float: right;
-    margin: 10px;
+    margin: 5px 10px 10px 10px;
     cursor: pointer;
     color: #2F6FAD;
 }
 .comment_body{
     float: left;
     display: none;
+    padding-bottom: 5px;
 }
 .comment_body textarea{
     width: 454px;
@@ -609,4 +610,15 @@ textarea#content{
 .micro_co dt span{
     padding: 5px;
     font-size: 13px;
+}
+.sentTime{
+    font-size: 13px;
+    color: #e67e22;
+    margin-top: 8px;
+    display: block;
+    width: 180px;
+    float: left;
+}
+#friends_sg button{
+    font-size: 11px;
 }

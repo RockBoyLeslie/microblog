@@ -95,7 +95,11 @@ $(function(){
             success: function(data) {
                 if(data.response_code == 0){
                     var count = [];
-                    for(var i= 0,req_length=data.messages.length;i<req_length;i++){
+                    var req_length = data.messages.length;
+                    if(req_length == 0){
+                        $("#msg_line dt").append('<dl class="clearfix"><span><a href="#" class="no_more">没有您的私信...</a></span></dl>');
+                    }
+                    for(var i= 0;i<req_length;i++){
                         var from_user = data.messages[i].from_user;
                         var hasId = false;
                         if(count.length>0){
@@ -167,8 +171,8 @@ $(function(){
                      } else {
                          $('#user+.bubble').css('display','none').html('');
                      }
-                     if(data.friend_comments+data.friend_messages>0){
-                         $('#msg+.bubble').css('display','block').html(data.friend_comments+data.friend_messages);
+                     if(data.friend_messages>0){
+                         $('#msg+.bubble').css('display','block').html(data.friend_messages);
                      } else {
                          $('#msg+.bubble').css('display','none').html('');
                      }
