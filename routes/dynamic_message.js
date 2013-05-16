@@ -24,12 +24,62 @@ exports.sendBlog = function(req, res) {
                         if (err) {
                             throw err;
                         }
+                        rows[0].created_at = rows[0].created_at.toISOString().replace(/T/, ' ').replace(/\..+/, '');
                         var html = mustache.to_html(template.toString(), rows[0]);
                         res.json({response_code : 0, html : html});
                         return;
                     });
                 }
             )
+        } catch (err) {
+            res.json({response_code : -1, response_message : err});
+        } finally {
+            connection.end();
+        }
+    })
+};
+
+// send blog
+exports.sendComment = function(req, res) {
+    var user_id = req.session.user.id;
+    var content = req.body['content'];
+    var message_id = req.body['message_id'];
+    pool.getConnection(function(err, connection) {
+        try {
+            connection.query('select user_id as message_user_id from microblog.dynamic_messages where id = ?',[message_id], function(err, rows, fields){
+                if (err) {
+                    throw err;
+                }
+                if (!rows[0]) {
+                    res.json({response_code : -1, response_message : '无效的微博ID'});
+                    return;
+                }
+                var message_user_id = rows[0].message_user_id;
+                connection.query('insert into microblog.comments(content,user_id,message_id,message_user_id) values (?,?,?,?)',[content, user_id, message_id, message_user_id], function(err, rows){
+                    if (err) {
+                        throw err;
+                    }
+                });
+
+                connection.query(
+                    'select c.content, c.id, c.created_at, c.user_id,c.message_id, u.name from microblog.comments c, microblog.user_accounts u where c.id = last_insert_id() and u.id = c.user_id',
+                    [],
+                    function(err, rows, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        fs.readFile('views/blog/comment.html', function(err, template){
+                            if (err) {
+                                throw err;
+                            }
+                            rows[0].created_at = rows[0].created_at.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                            var html = mustache.to_html(template.toString(), rows[0]);
+                            res.json({response_code : 0, html : html});
+                            return;
+                        });
+                    }
+                )
+            });
         } catch (err) {
             res.json({response_code : -1, response_message : err});
         } finally {
@@ -57,9 +107,43 @@ exports.listBlog = function(req, res) {
                         }
                         var html = '';
                         for (var i = 0; i < rows.length; i ++) {
+                            rows[i].created_at = rows[i].created_at.toISOString().replace(/T/, ' ').replace(/\..+/, '');
                             html += mustache.to_html(template.toString(), rows[i]);
                         }
-                        /*html+='<script type="text/javascript" src="/javascripts/comment.js"></script>';*/
+                        res.json({response_code : 0, html : html});
+                        return;
+                    });
+                }
+            );
+        } catch (err) {
+            res.json({response_code : -1, response_message : err});
+        } finally {
+            connection.end();
+        }
+    })
+}
+
+// list comments for one blog
+exports.listComment = function(req, res) {
+    var message_id = req.query.message_id;
+    pool.getConnection(function(err, connection) {
+        try {
+            connection.query(
+                'select c.content, c.id, c.created_at, c.user_id,c.message_id, u.name from microblog.comments c, microblog.user_accounts u where c.message_id = ? and u.id = c.user_id order by c.created_at desc',
+                [message_id],
+                function(err, rows, fields) {
+                    if (err) {
+                        throw err;
+                    }
+                    fs.readFile('views/blog/comment.html', function(err, template){
+                        if (err) {
+                            throw err;
+                        }
+                        var html = '';
+                        for (var i = 0; i < rows.length; i ++) {
+                            rows[i].created_at = rows[i].created_at.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                            html += mustache.to_html(template.toString(), rows[i]);
+                        }
                         res.json({response_code : 0, html : html});
                         return;
                     });

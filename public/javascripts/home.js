@@ -42,12 +42,45 @@ $(function(){
         });
     });
     $(document).on('click','.write',function(){
+        var message_id = $(this).attr('for');
         if($(this).next().css('display')=='none'){
             $(this).nextAll().slideDown(500);
+            $.ajax({
+                url : '/listComment',
+                data : 'message_id=' + message_id,
+                method : 'get',
+                dataType : 'json',
+                success : function(data) {
+                    if (data.response_code == 0) {
+                        $("#comment_dt_"+message_id).prepend(data.html);
+                    } else {
+                        alert(data.response_message)
+                    }
+                }
+            });
         }else{
             $(this).nextAll().slideUp(500);
+            $("#comment_dt_"+message_id).html('');
         }
-    })
+    });
+
+    $(document).on('click',"button[name='sendComment']", function(){
+        var message_id =  $(this).attr('for');
+        var content = $("#textarea_comment_" + message_id).val();
+        $.ajax({
+            url : '/sendComment',
+            data : 'content=' + content + '&message_id=' + message_id,
+            method : 'post',
+            dataType : 'json',
+            success : function(data) {
+                if (data.response_code == 0) {
+                    $("#comment_dt_"+message_id).prepend(data.html);
+                } else {
+                    alert(data.response_message)
+                }
+            }
+        });
+    });
 });
 
 

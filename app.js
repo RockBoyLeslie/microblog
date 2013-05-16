@@ -82,7 +82,9 @@ app.get('/showMessage', private_message.show);
 
 //user dynamic_message part
 app.post('/sendBlog', dynamic_message.sendBlog);
+app.post('/sendComment', dynamic_message.sendComment);
 app.get('/listBlog', dynamic_message.listBlog);
+app.get('/listComment', dynamic_message.listComment);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
