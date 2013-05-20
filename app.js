@@ -61,6 +61,7 @@ app.post('/register', user_account.register);
 app.post('/login', user_account.login);
 app.get('/logout', user_account.logout);
 app.get('/find', user_account.find);
+app.get('/suggest', user_account.suggest);
 
 
 // user request part

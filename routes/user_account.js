@@ -1,4 +1,7 @@
 var pool = require('../db/dbconnection').pool;
+var fs = require('fs');
+var mustache = require('mustache');
+
 exports.register = function(req, res) {
     var email = req.body['email'];
     var username = req.body['username'];
@@ -95,4 +98,36 @@ exports.find = function(req, res) {
 exports.logout = function(req, res) {
     req.session.user = null;
     res.redirect('/');
+};
+
+exports.suggest = function(req, res) {
+    var current_user = req.session.user.id;
+    pool.getConnection(function(err, connection) {
+        try {
+            connection.query(
+                'select r.* from (select u.name, u.id from microblog.user_accounts u where u.id != ? and u.id not in (select friend_id from microblog.user_relationships where user_id = ?)) r order by rand() limit 6',
+                [current_user, current_user],
+                function(err, rows, fields) {
+                    if (err) {
+                        throw err;
+                    }
+                    fs.readFile('views/users/suggest.html', function(err, template){
+                        if (err) {
+                            throw err;
+                        }
+                        var html = '';
+                        for (var i = 0; i < rows.length; i ++) {
+                            html += mustache.to_html(template.toString(), rows[i]);
+                        }
+                        res.json({response_code : 0, html : html});
+                        return;
+                    });
+                }
+            )
+        } catch (err) {
+            res.json({response_code : -1, html : err});
+        } finally {
+            connection.end();
+        }
+    });
 };
