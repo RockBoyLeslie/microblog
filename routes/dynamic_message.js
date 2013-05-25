@@ -39,7 +39,7 @@ exports.sendBlog = function(req, res) {
     })
 };
 
-// send blog
+// send comment
 exports.sendComment = function(req, res) {
     var user_id = req.session.user.id;
     var content = req.body['content'];
