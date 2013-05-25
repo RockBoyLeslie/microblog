@@ -8,8 +8,7 @@
 
 $(function(){
     fetch_notification_message();
-    setInterval(fetch_notification_message,30*1000);
-
+    setInterval(fetch_notification_message,20*1000);
     $('#user_hover').hover(function(){
         $.ajax({
             url: '/fetchRequests',
