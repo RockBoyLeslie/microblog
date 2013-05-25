@@ -8,7 +8,6 @@ body,div,ul,li,img,dl,dt,textarea,form,h2,h4{
 }
 #tabs{
     width: 180px;
-    float: left;
 }
 #container{
     width: 824px;
@@ -541,7 +540,7 @@ textarea#content{
 }
 #friends_sg li{
     margin-top: 8px;
-    padding: 0 2px 0 2px;
+    padding: 0 1px 0 1px;
     text-align: center;
 }
 #friends_sg span{
